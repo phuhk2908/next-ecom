@@ -9,7 +9,6 @@ const socialLinks = [
   { icon: Instagram, href: "#" },
 ];
 
-// Footer navigation data
 const footerNavigation = [
   {
     title: "Company",
@@ -39,7 +38,6 @@ const footerNavigation = [
   },
 ];
 
-// Payment methods data
 const paymentMethods = [
   { name: "Visa", width: 48, height: 30 },
   { name: "Mastercard", width: 48, height: 30 },
@@ -52,9 +50,9 @@ const Footer = () => {
   return (
     <footer className="w-full bg-[#f0f0f0] py-10">
       <div className="container">
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-5">
+        <div className="grid grid-cols-2 gap-8 lg:grid-cols-5">
           {/* Logo and description */}
-          <div className="lg:col-span-1">
+          <div className="col-span-2 lg:col-span-1">
             <Link href="/" className="inline-block">
               <h2 className="text-3xl font-black tracking-tighter">SHOP.CO</h2>
             </Link>
@@ -101,7 +99,7 @@ const Footer = () => {
           ))}
         </div>
 
-        <Separator className="mt-12 mb-8" />
+        <Separator className="mb-8 mt-12" />
 
         {/* Bottom section with copyright and payment methods */}
         <div className="flex flex-col items-center justify-between md:flex-row">
