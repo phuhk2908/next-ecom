@@ -110,7 +110,7 @@ const Footer = () => {
             {paymentMethods.map((payment, index) => (
               <div key={index} className="relative h-8 w-12">
                 <Image
-                  src={`/placeholder.svg?height=${payment.height}&width=${payment.width}`}
+                  src={`https://placehold.co/${payment.width}x${payment.height}`}
                   alt={payment.name}
                   width={payment.width}
                   height={payment.height}
