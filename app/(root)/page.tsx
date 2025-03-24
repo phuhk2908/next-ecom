@@ -4,6 +4,7 @@ import HomeMarquee from "../../components/home/home-marquee";
 import { Separator } from "@/components/ui/separator";
 import HomeBrowse from "@/components/home/home-browse";
 import Newsletter from "@/components/shared/Newsletter";
+import HomeTestimonials from "@/components/home/home-testimonials";
 
 export default function Home() {
   return (
@@ -18,6 +19,8 @@ export default function Home() {
       <HomeBrowse />
 
       <Newsletter />
+
+      <HomeTestimonials />
     </>
   );
 }
