@@ -32,7 +32,9 @@ const Breadcrumbs = ({ breadcrumbs, className }: BreadcrumbsProps) => {
                     {breadcrumb.label}
                   </BreadcrumbLink>
                 ) : (
-                  <BreadcrumbPage>{breadcrumb.label}</BreadcrumbPage>
+                  <BreadcrumbPage className="font-medium">
+                    {breadcrumb.label}
+                  </BreadcrumbPage>
                 )}
               </BreadcrumbItem>
               {!isLast && <BreadcrumbSeparator />}

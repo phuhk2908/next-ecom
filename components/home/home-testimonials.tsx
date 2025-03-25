@@ -102,7 +102,10 @@ const HomeTestimonials = () => {
           <Carousel>
             <CarouselContent>
               {testimonials.map((testimonial, idx) => (
-                <CarouselItem className="basis-1/3" key={idx}>
+                <CarouselItem
+                  className="basis-full md:basis-1/2 lg:basis-1/3"
+                  key={idx}
+                >
                   <TestimonialCard
                     ref={(el) => {
                       cardRefs.current[idx] = el;

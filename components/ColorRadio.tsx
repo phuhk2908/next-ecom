@@ -1,14 +1,20 @@
 "use client";
 
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { cn } from "@/lib/utils";
 import { Dispatch, SetStateAction } from "react";
 
 interface ColorRadioProps {
   selectedColor: string | undefined;
   setSelectedColor: Dispatch<SetStateAction<string | undefined>>;
+  isProductFilter?: boolean;
 }
 
-const ColorRadio = ({ selectedColor, setSelectedColor }: ColorRadioProps) => {
+const ColorRadio = ({
+  selectedColor,
+  setSelectedColor,
+  isProductFilter = false,
+}: ColorRadioProps) => {
   const colors = [
     { value: "black", class: "bg-black", classActive: "ring-black" },
     { value: "blue", class: "bg-blue-600", activeClass: "ring-blue-600" },
@@ -22,7 +28,9 @@ const ColorRadio = ({ selectedColor, setSelectedColor }: ColorRadioProps) => {
     <RadioGroup
       value={selectedColor}
       onValueChange={setSelectedColor}
-      className="grid grid-cols-6 gap-3"
+      className={cn(
+        isProductFilter ? "grid grid-cols-6 gap-3" : "flex items-center gap-3",
+      )}
     >
       {colors.map((color) => (
         <div

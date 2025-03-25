@@ -27,16 +27,15 @@ interface RatingsProps extends React.HTMLAttributes<HTMLDivElement> {
   variant?: keyof typeof ratingVariants;
 }
 
-const Ratings = ({ ...props }: RatingsProps) => {
-  const {
-    rating,
-    totalStars = 5,
-    size = 20,
-    fill = true,
-    Icon = <Star />,
-    variant = "default",
-  } = props;
-
+const Ratings = ({
+  rating,
+  totalStars = 5,
+  size = 20,
+  fill = true,
+  Icon = <Star />,
+  variant = "default",
+  ...props
+}: RatingsProps) => {
   const fullStars = Math.floor(rating);
   const partialStar =
     rating % 1 > 0 ? (
@@ -78,9 +77,12 @@ interface PartialStarProps {
   className?: string;
   Icon: React.ReactElement;
 }
-const PartialStar = ({ ...props }: PartialStarProps) => {
-  const { fillPercentage, size, className, Icon } = props;
-
+const PartialStar = ({
+  fillPercentage,
+  size,
+  className,
+  Icon,
+}: PartialStarProps) => {
   return (
     <div style={{ position: "relative", display: "inline-block" }}>
       {React.cloneElement(Icon, {

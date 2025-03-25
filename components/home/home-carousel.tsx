@@ -5,16 +5,23 @@ import {
 } from "@/components/ui/carousel";
 import ProductCard from "../ProductCard";
 import { Button } from "../ui/button";
+import { cn } from "@/lib/utils";
 
 interface HomeCarouselProps {
   title: string;
+  isContainer?: boolean;
+  isViewAll?: boolean;
 }
 
-const HomeCarousel = ({ title }: HomeCarouselProps) => {
+const HomeCarousel = ({
+  title,
+  isContainer = true,
+  isViewAll = true,
+}: HomeCarouselProps) => {
   return (
     <section className="py-20">
-      <div className="container">
-        <h2 className="mb-10 text-center text-4xl font-black uppercase tracking-tight">
+      <div className={cn(isContainer && "container")}>
+        <h2 className="mb-10 text-center text-2xl font-black uppercase tracking-tight lg:text-4xl">
           {title}
         </h2>
 
@@ -37,11 +44,13 @@ const HomeCarousel = ({ title }: HomeCarouselProps) => {
           </CarouselContent>
         </Carousel>
 
-        <div className="mt-8 flex justify-center">
-          <Button variant="outline" className="rounded-full px-8">
-            View All
-          </Button>
-        </div>
+        {isViewAll && (
+          <div className="mt-8 flex justify-center">
+            <Button variant="outline" className="rounded-full px-8">
+              View All
+            </Button>
+          </div>
+        )}
       </div>
     </section>
   );

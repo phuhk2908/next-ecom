@@ -35,7 +35,7 @@ const ExpandableContainer = ({
           }}
         />
       </CollapsibleTrigger>
-      <CollapsibleContent className="data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down mt-2 py-2 transition-all">
+      <CollapsibleContent className="mt-2 py-2 transition-all data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down">
         {children}
       </CollapsibleContent>
     </Collapsible>

@@ -108,7 +108,10 @@ const Footer = () => {
           </p>
           <div className="mt-4 flex items-center space-x-4 md:mt-0">
             {paymentMethods.map((payment, index) => (
-              <div key={index} className="relative h-8 w-12">
+              <div
+                key={index}
+                className="relative h-8 w-12 overflow-hidden rounded"
+              >
                 <Image
                   src={`https://placehold.co/${payment.width}x${payment.height}`}
                   alt={payment.name}
