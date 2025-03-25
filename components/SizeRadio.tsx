@@ -7,20 +7,25 @@ import { Dispatch, SetStateAction } from "react";
 interface SizeRadioProps {
   selectedSize: string | undefined;
   setSelectedSize: Dispatch<SetStateAction<string | undefined>>;
+  isProductFilter?: boolean;
 }
 
 const sizes = [
-  { value: "xs", label: "X-Small" },
-  { value: "s", label: "Small" },
-  { value: "m", label: "Medium" },
-  { value: "l", label: "Large" },
-  { value: "xl", label: "X-Large" },
-  { value: "xxl", label: "XX-Large" },
-  { value: "3xl", label: "3X-Large" },
-  { value: "4xl", label: "4X-Large" },
+  { value: "xs", label: "XS" },
+  { value: "s", label: "S" },
+  { value: "m", label: "M" },
+  { value: "l", label: "L" },
+  { value: "xl", label: "XL" },
+  { value: "xxl", label: "XXL" },
+  { value: "3xl", label: "3XL" },
+  { value: "4xl", label: "4XL" },
 ];
 
-const SizeRadio = ({ selectedSize, setSelectedSize }: SizeRadioProps) => {
+const SizeRadio = ({
+  selectedSize,
+  setSelectedSize,
+  isProductFilter = false,
+}: SizeRadioProps) => {
   return (
     <RadioGroup
       value={selectedSize}
@@ -28,7 +33,10 @@ const SizeRadio = ({ selectedSize, setSelectedSize }: SizeRadioProps) => {
       className="flex flex-wrap"
     >
       {sizes.map((size) => (
-        <div key={size.value} className="relative flex-grow">
+        <div
+          key={size.value}
+          className={cn("relative", isProductFilter && "flex-grow")}
+        >
           <RadioGroupItem
             value={size.value}
             id={size.value}

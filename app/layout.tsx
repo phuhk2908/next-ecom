@@ -4,6 +4,7 @@ import Providers from "../components/providers";
 import Header from "../components/Header";
 import { integral, satoshi } from "@/lib/fonts";
 import Footer from "@/components/Footer";
+import { Analytics } from "@vercel/analytics/next";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -23,8 +24,9 @@ export default function RootLayout({
         <Providers>
           <Header />
           {children}
-          <Footer/>
+          <Footer />
         </Providers>
+        <Analytics />
       </body>
     </html>
   );

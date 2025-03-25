@@ -78,6 +78,7 @@ const ProductFilter = ({ setOpen }: ProductFilterProps) => {
         <ColorRadio
           selectedColor={selectedColor}
           setSelectedColor={setSelectedColor}
+          isProductFilter={true}
         />
       </ExpandableContainer>
 
@@ -88,6 +89,7 @@ const ProductFilter = ({ setOpen }: ProductFilterProps) => {
         <SizeRadio
           selectedSize={selectedSize}
           setSelectedSize={setSelectedSize}
+          isProductFilter={true}
         />
       </ExpandableContainer>
 
