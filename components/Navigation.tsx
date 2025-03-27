@@ -10,9 +10,13 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import { routes } from "@/constants";
+import { cn } from "@/lib/utils";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const Navigation = () => {
+  const pathname = usePathname();
+
   return (
     <NavigationMenu className="w-full max-lg:hidden">
       <NavigationMenuList className="w-full justify-start">
@@ -20,7 +24,15 @@ const Navigation = () => {
           <NavigationMenuItem key={idx}>
             {route.children ? (
               <>
-                <NavigationMenuTrigger>{route.name}</NavigationMenuTrigger>
+                <NavigationMenuTrigger
+                  className={cn(
+                    navigationMenuTriggerStyle(),
+                    "text-gray-500",
+                    pathname === route.href && "text-black",
+                  )}
+                >
+                  {route.name}
+                </NavigationMenuTrigger>
                 <NavigationMenuContent>
                   <div className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2">
                     {route.children.map((child, childIdx) => (
@@ -52,7 +64,13 @@ const Navigation = () => {
               </>
             ) : (
               <Link href={route.href} legacyBehavior passHref>
-                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                <NavigationMenuLink
+                  className={cn(
+                    navigationMenuTriggerStyle(),
+                    "text-gray-500",
+                    pathname === route.href && "text-black",
+                  )}
+                >
                   {route.name}
                 </NavigationMenuLink>
               </Link>

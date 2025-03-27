@@ -5,6 +5,8 @@ import Header from "../components/Header";
 import { integral, satoshi } from "@/lib/fonts";
 import Footer from "@/components/Footer";
 import { Analytics } from "@vercel/analytics/next";
+import ReactScan from "@/components/ReactScan";
+import TransitionProvider from "@/components/providers/transition-provider";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -18,12 +20,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <ReactScan />
       <body
         className={`${satoshi.variable} ${integral.variable} font-satoshi antialiased`}
       >
         <Providers>
           <Header />
-          {children}
+          <TransitionProvider>{children}</TransitionProvider>
           <Footer />
         </Providers>
         <Analytics />

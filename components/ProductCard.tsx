@@ -4,8 +4,9 @@ import { Ratings } from "./shared/Ratings";
 import { Badge } from "./ui/badge";
 import { ShoppingBag } from "lucide-react";
 import { Button } from "./ui/button";
+import { memo } from "react";
 
-const ProductCard = () => {
+const ProductCard = memo(() => {
   return (
     <div className="flex size-full flex-col rounded-xl border">
       <div className="relative overflow-hidden rounded-lg">
@@ -46,6 +47,8 @@ const ProductCard = () => {
       </div>
     </div>
   );
-};
+});
+
+ProductCard.displayName = "ProductCard";
 
 export default ProductCard;

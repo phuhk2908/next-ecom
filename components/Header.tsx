@@ -6,11 +6,24 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Navigation from "./Navigation";
 import NavigationMobile from "./NavigationMobile";
-import { useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
+import { useDebounce } from "@/hooks/use-debounce";
 
 const Header = () => {
   const [isNavMobile, setIsNavMobile] = useState<boolean>(false);
+  const [searchTerm, setSearchTerm] = useState<string>("");
+  const debouncedSearchTerm = useDebounce(searchTerm, 500);
   const pathname = usePathname();
+
+  const handleSearch = (event: ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(event.target.value);
+  };
+
+  useEffect(() => {
+    if (debouncedSearchTerm) {
+      console.log("Search term after debounce:", debouncedSearchTerm);
+    }
+  }, [debouncedSearchTerm]);
 
   return (
     <header className="py-[13px]">
@@ -39,13 +52,17 @@ const Header = () => {
           <Input
             className="border-transparent shadow-none focus-visible:ring-0"
             placeholder="Search for products..."
+            value={searchTerm}
+            onChange={(e) => handleSearch(e)}
           />
         </div>
 
         <div className="flex items-center gap-[14px]">
           <Search className="size-6 lg:hidden" />
-          <ShoppingCart className="size-6" />
-          <UserCircle className="size-6" />
+          <Link href="/cart">
+            <ShoppingCart className="size-6 text-gray-500 duration-300 hover:text-black" />
+          </Link>
+          <UserCircle className="size-6 text-gray-500 duration-300 hover:text-black" />
         </div>
       </div>
 

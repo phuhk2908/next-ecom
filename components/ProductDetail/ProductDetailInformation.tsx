@@ -1,9 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import ColorRadio from "../ColorRadio";
+import ColorRadio from "../shared/ColorRadio";
 import { Ratings } from "../shared/Ratings";
-import SizeRadio from "../SizeRadio";
+import SizeRadio from "../shared/SizeRadio";
 import { Separator } from "../ui/separator";
 import { Badge } from "../ui/badge";
 
