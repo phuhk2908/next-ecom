@@ -25,9 +25,9 @@ export const routes: RouteItem[] = [
       { name: "Accessories", href: "/shop/accessories" },
     ],
   },
-  { name: "On Sale", href: "/" },
-  { name: "New Arrivals", href: "/" },
-  { name: "Brands", href: "/" },
+  { name: "On Sale", href: "/#" },
+  { name: "News", href: "/news" },
+  { name: "Brands", href: "/#" },
 ];
 
 export const faqData = [

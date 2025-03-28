@@ -2,11 +2,13 @@ import QuantitySelector from "@/components/QuantitySelector";
 import Breadcrumbs from "@/components/shared/Breadcrumbs";
 import Newsletter from "@/components/shared/Newsletter";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
+import { cn } from "@/lib/utils";
 import { Tag, Trash2 } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { Fragment } from "react";
 
 const breadcrumbs = [{ label: "Home", href: "/" }, { label: "Cart" }];
@@ -148,9 +150,17 @@ const CartPage = () => {
                 <Button>Apply</Button>
               </div>
 
-              <Button size="lg" className="w-full">
+              <Link
+                href="/checkout"
+                className={cn(
+                  "w-full",
+                  buttonVariants({
+                    size: "lg",
+                  }),
+                )}
+              >
                 Go to checkout
-              </Button>
+              </Link>
             </div>
           </div>
         </div>

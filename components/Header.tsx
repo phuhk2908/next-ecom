@@ -8,6 +8,7 @@ import Navigation from "./Navigation";
 import NavigationMobile from "./NavigationMobile";
 import { ChangeEvent, useEffect, useState } from "react";
 import { useDebounce } from "@/hooks/use-debounce";
+import { Badge } from "./ui/badge";
 
 const Header = () => {
   const [isNavMobile, setIsNavMobile] = useState<boolean>(false);
@@ -59,8 +60,11 @@ const Header = () => {
 
         <div className="flex items-center gap-[14px]">
           <Search className="size-6 lg:hidden" />
-          <Link href="/cart">
+          <Link href="/cart" className="relative">
             <ShoppingCart className="size-6 text-gray-500 duration-300 hover:text-black" />
+            <Badge className="absolute -right-2 -top-2 justify-center rounded-full px-1 py-px">
+              0
+            </Badge>
           </Link>
           <UserCircle className="size-6 text-gray-500 duration-300 hover:text-black" />
         </div>
