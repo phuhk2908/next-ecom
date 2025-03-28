@@ -71,8 +71,6 @@ const ProductFilter = ({ setOpen }: ProductFilterProps) => {
         />
       </ExpandableContainer>
 
-      <Separator />
-
       {/* Filter colors */}
       <ExpandableContainer title="Colors">
         <ColorRadio
@@ -82,8 +80,6 @@ const ProductFilter = ({ setOpen }: ProductFilterProps) => {
         />
       </ExpandableContainer>
 
-      <Separator />
-
       {/* Filter sizes */}
       <ExpandableContainer title="Sizes">
         <SizeRadio
@@ -92,8 +88,6 @@ const ProductFilter = ({ setOpen }: ProductFilterProps) => {
           isProductFilter={true}
         />
       </ExpandableContainer>
-
-      <Separator />
 
       <Button>Apply filters</Button>
     </aside>

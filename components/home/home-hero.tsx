@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import Image from "next/image";
 import React from "react";
+import { AspectRatio } from "../ui/aspect-ratio";
 
 const HomeHero = () => {
   return (
@@ -57,7 +58,7 @@ const HomeHero = () => {
         </div>
 
         <div className="relative h-full lg:absolute lg:right-0 lg:top-0 lg:w-[calc(100%-596px)]">
-          <div className="relative aspect-[1/1]">
+          <AspectRatio ratio={1}>
             <Image
               src="/static/images/home-hero-4.png"
               alt="Home Hero"
@@ -66,7 +67,7 @@ const HomeHero = () => {
               className="object-contain"
               priority
             />
-          </div>
+          </AspectRatio>
         </div>
       </div>
     </div>
