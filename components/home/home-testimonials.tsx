@@ -9,6 +9,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "../ui/carousel";
+import Autoplay from "embla-carousel-autoplay";
 
 const testimonials = [
   {
@@ -99,7 +100,14 @@ const HomeTestimonials = () => {
           Our happy customers
         </h2>
         <div className="mt-10 w-full">
-          <Carousel>
+          <Carousel
+            opts={{ loop: true }}
+            plugins={[
+              Autoplay({
+                delay: 500,
+              }),
+            ]}
+          >
             <CarouselContent>
               {testimonials.map((testimonial, idx) => (
                 <CarouselItem

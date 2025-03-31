@@ -10,10 +10,10 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useEffect, useState } from "react";
-import { Input } from "./ui/input";
+import { Input } from "../ui/input";
 
 import { useLocation } from "@/hooks/use-location";
-import { LocationCombobox } from "./ui/location-combobox";
+import { LocationCombobox } from "../ui/location-combobox";
 
 const AddressForm = () => {
   const [paymentMethod, setPaymentMethod] = useState("cod");

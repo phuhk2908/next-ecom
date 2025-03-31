@@ -1,12 +1,11 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Providers from "../components/providers";
-import Header from "../components/Header";
+
 import { integral, satoshi } from "@/lib/fonts";
-import Footer from "@/components/Footer";
+
 import { Analytics } from "@vercel/analytics/next";
 import ReactScan from "@/components/ReactScan";
-import TransitionProvider from "@/components/providers/transition-provider";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -24,11 +23,7 @@ export default function RootLayout({
       <body
         className={`${satoshi.variable} ${integral.variable} font-satoshi antialiased`}
       >
-        <Providers>
-          <Header />
-          <TransitionProvider>{children}</TransitionProvider>
-          <Footer />
-        </Providers>
+        <Providers>{children}</Providers>
         <Analytics />
       </body>
     </html>
