@@ -3,8 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
-import { Search, ShoppingCart, User, Menu, X, Heart } from "lucide-react";
+import { Search, ShoppingCart, User, Menu, Heart } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -27,7 +26,6 @@ import {
 import { categories } from "@/constants";
 
 const Header = () => {
-  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
 
   return (
