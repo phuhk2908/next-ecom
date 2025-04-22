@@ -5,7 +5,6 @@ import Providers from "../components/providers";
 import { integral, satoshi } from "@/lib/fonts";
 
 import { Analytics } from "@vercel/analytics/next";
-import ReactScan from "@/components/ReactScan";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -19,9 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <ReactScan />
       <body
-        suppressHydrationWarning={true}
         className={`${satoshi.variable} ${integral.variable} font-satoshi antialiased`}
       >
         <Providers>{children}</Providers>
