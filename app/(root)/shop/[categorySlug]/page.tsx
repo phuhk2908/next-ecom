@@ -1,6 +1,6 @@
 import Breadcrumbs from "@/components/shared/Breadcrumbs";
-import ProductFilter from "@/components/ProductFilter";
-import ProductList from "@/components/ProductList";
+import ProductFilter from "@/components/product-filter";
+import ProductList from "@/components/product-list";
 import {
   Select,
   SelectContent,
@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/select";
 import { formatSlug } from "@/lib/utils";
 
-import ProductFilterMobile from "@/components/ProductFilterMobile";
+import ProductFilterMobile from "@/components/product-filter-mobile";
 import Newsletter from "@/components/shared/Newsletter";
 
 const breadcrumbs = [{ label: "Home", href: "/" }, { label: "Men" }];

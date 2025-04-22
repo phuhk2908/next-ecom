@@ -7,7 +7,7 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
-import ProductCard from "./ProductCard";
+import ProductCard from "./product-card";
 import { Separator } from "./ui/separator";
 
 const ProductList = () => {

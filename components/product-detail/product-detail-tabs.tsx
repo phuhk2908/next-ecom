@@ -1,5 +1,5 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import TestimonialCard from "../TestimonialCard";
+import TestimonialCard from "../testimonial-card";
 import {
   Accordion,
   AccordionContent,

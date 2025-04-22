@@ -161,7 +161,7 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
 
           {/* Sidebar */}
           <div className="lg:col-span-4 space-y-8">
-            <div className="sticky top-24">
+            <div className="sticky top-36">
               <TableOfContents />
               <div className="mt-8 p-6 bg-muted rounded-lg">
                 <h3 className="font-medium mb-4">Related Posts</h3>
