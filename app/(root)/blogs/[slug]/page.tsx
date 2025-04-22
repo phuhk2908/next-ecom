@@ -79,7 +79,7 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
               <p className="lead">{post.excerpt}</p>
 
               <p>
-                In today's digital landscape, creating engaging content is more important than ever. Brands and creators
+                In today&apos;s digital landscape, creating engaging content is more important than ever. Brands and creators
                 alike are competing for attention in an increasingly crowded space, making it essential to develop
                 strategies that not only attract but retain audience interest.
               </p>
@@ -103,8 +103,8 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
               </p>
 
               <blockquote>
-                "The most powerful person in the world is the storyteller. The storyteller sets the vision, values, and
-                agenda of an entire generation that is to come." — Steve Jobs
+              &quot;The most powerful person in the world is the storyteller. The storyteller sets the vision, values, and
+                agenda of an entire generation that is to come.&quot; — Steve Jobs
               </blockquote>
 
               <h2>Embracing Visual Content</h2>
@@ -116,7 +116,7 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
               <h2>Consistency is Key</h2>
               <p>
                 Establishing a consistent publishing schedule helps build anticipation and trust with your audience.
-                Whether you're posting daily, weekly, or monthly, maintaining consistency signals reliability and
+                Whether you&apos;re posting daily, weekly, or monthly, maintaining consistency signals reliability and
                 professionalism.
               </p>
 
