@@ -21,6 +21,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <ReactScan />
       <body
+        suppressHydrationWarning={true}
         className={`${satoshi.variable} ${integral.variable} font-satoshi antialiased`}
       >
         <Providers>{children}</Providers>

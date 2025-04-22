@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 import { Separator } from "@/components/ui/separator";
 
 import Link from "next/link";
-import AddressForm from "@/components/forms/AddressForm";
+import AddressForm from "@/components/form/AddressForm";
 import Newsletter from "@/components/shared/Newsletter";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 

@@ -219,11 +219,7 @@ const Header = () => {
                       </NavigationMenuContent>
                     </>
                   ) : (
-                    <Link
-                      href={`/category/${category.slug}`}
-                      legacyBehavior
-                      passHref
-                    >
+                    <Link href={`/${category.slug}`} legacyBehavior passHref>
                       <NavigationMenuLink
                         className={navigationMenuTriggerStyle()}
                       >

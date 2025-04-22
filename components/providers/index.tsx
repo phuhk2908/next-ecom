@@ -3,6 +3,7 @@
 import { ReactNode } from "react";
 import { ThemeProvider } from "./theme-provider";
 import ReactQueryProvider from "./query-provider";
+import { Toaster } from "../ui/toaster";
 
 interface Props {
   children: ReactNode;
@@ -17,6 +18,7 @@ const Providers = ({ children }: Props) => {
         enableSystem
         disableTransitionOnChange
       >
+        <Toaster />
         {children}
       </ThemeProvider>
     </ReactQueryProvider>

@@ -1,7 +1,7 @@
 import HomeCarousel from "@/components/home/home-carousel";
-import ProductDetailGallery from "@/components/ProductDetail/ProductDetailGallery";
-import ProductDetailInformation from "@/components/ProductDetail/ProductDetailInformation";
-import ProductDetailTabs from "@/components/ProductDetail/ProductDetailTabs";
+import ProductDetailGallery from "@/components/product-detail/ProductDetailGallery";
+import ProductDetailInformation from "@/components/product-detail/ProductDetailInformation";
+import ProductDetailTabs from "@/components/product-detail/ProductDetailTabs";
 import Breadcrumbs from "@/components/shared/Breadcrumbs";
 import Newsletter from "@/components/shared/Newsletter";
 import { memo } from "react";
