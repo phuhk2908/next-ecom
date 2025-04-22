@@ -19,7 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <ReactScan />
+      {/* <ReactScan /> */}
       <body
         suppressHydrationWarning={true}
         className={`${satoshi.variable} ${integral.variable} font-satoshi antialiased`}
