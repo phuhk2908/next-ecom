@@ -104,7 +104,7 @@ const HomeTestimonials = () => {
             opts={{ loop: true }}
             plugins={[
               Autoplay({
-                delay: 500,
+                delay: 3000,
               }),
             ]}
           >
