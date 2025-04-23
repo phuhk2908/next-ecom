@@ -8,19 +8,21 @@ import HomeTestimonials from "@/components/home/home-testimonials";
 
 export default function Home() {
   return (
-    <>
+    <main>
       <HomeHero />
-      <HomeMarquee />
+      <div className="container">
+        <HomeMarquee />
 
-      <HomeCarousel title="New arrivals" />
-      <Separator className="my-4" />
-      <HomeCarousel title="Top selling" />
+        <HomeCarousel title="New arrivals" />
+        <Separator className="my-4" />
+        <HomeCarousel title="Top selling" />
 
-      <HomeBrowse />
+        <HomeBrowse />
 
-      <Newsletter />
+        <Newsletter />
 
-      <HomeTestimonials />
-    </>
+        <HomeTestimonials />
+      </div>
+    </main>
   );
 }

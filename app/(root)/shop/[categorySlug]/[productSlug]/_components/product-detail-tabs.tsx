@@ -1,11 +1,12 @@
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import TestimonialCard from "../testimonial-card";
+import TestimonialCard from "@/components/testimonial-card";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "../ui/accordion";
+} from "@/components/ui/accordion";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+
 import { fakeTestimonials, faqData } from "@/constants";
 
 const ProductDetailTabs = () => {

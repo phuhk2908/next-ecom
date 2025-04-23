@@ -1,25 +1,25 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import Image from "next/image"
-import Link from "next/link"
-import { motion } from "framer-motion"
-import { Calendar, Clock, MessageSquare } from "lucide-react"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { posts } from "@/lib/blog-data"
+import { useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { motion } from "framer-motion";
+import { Calendar, Clock, MessageSquare } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { posts } from "@/seed";
 
 export function RecentPosts() {
-  const [visiblePosts, setVisiblePosts] = useState(4)
+  const [visiblePosts, setVisiblePosts] = useState(4);
 
   const loadMore = () => {
-    setVisiblePosts((prev) => Math.min(prev + 4, posts.length))
-  }
+    setVisiblePosts((prev) => Math.min(prev + 4, posts.length));
+  };
 
   return (
     <section>
-      <div className="flex items-center justify-between mb-8">
+      <div className="mb-8 flex items-center justify-between">
         <h2 className="text-3xl font-bold tracking-tight">Recent Posts</h2>
       </div>
 
@@ -30,10 +30,13 @@ export function RecentPosts() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: index * 0.1 }}
-            className="grid grid-cols-1 md:grid-cols-12 gap-6"
+            className="grid grid-cols-1 gap-6 md:grid-cols-12"
           >
             <div className="md:col-span-5 lg:col-span-4">
-              <Link href={`/blogs/${post.slug}`} className="block relative h-60 md:h-full rounded-lg overflow-hidden">
+              <Link
+                href={`/blogs/${post.slug}`}
+                className="relative block h-60 overflow-hidden rounded-lg md:h-full"
+              >
                 <Image
                   src={post.coverImage || "/placeholder.svg"}
                   alt={post.title}
@@ -47,33 +50,42 @@ export function RecentPosts() {
                 {post.category}
               </Badge>
               <Link href={`/blogs/${post.slug}`}>
-                <h3 className="text-2xl font-semibold mb-2 hover:text-primary transition-colors">{post.title}</h3>
+                <h3 className="mb-2 text-2xl font-semibold transition-colors hover:text-primary">
+                  {post.title}
+                </h3>
               </Link>
-              <p className="text-muted-foreground mb-4 line-clamp-2">{post.excerpt}</p>
+              <p className="mb-4 line-clamp-2 text-muted-foreground">
+                {post.excerpt}
+              </p>
 
-              <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground mb-4">
+              <div className="mb-4 flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
                 <div className="flex items-center">
-                  <Calendar className="h-4 w-4 mr-1" />
+                  <Calendar className="mr-1 h-4 w-4" />
                   <span>{post.date}</span>
                 </div>
                 <div className="flex items-center">
-                  <Clock className="h-4 w-4 mr-1" />
+                  <Clock className="mr-1 h-4 w-4" />
                   <span>{post.readingTime} min read</span>
                 </div>
                 <div className="flex items-center">
-                  <MessageSquare className="h-4 w-4 mr-1" />
+                  <MessageSquare className="mr-1 h-4 w-4" />
                   <span>{post.commentCount} comments</span>
                 </div>
               </div>
 
               <div className="flex items-center gap-3">
                 <Avatar className="h-8 w-8">
-                  <AvatarImage src={post.author.avatar || "/placeholder.svg"} alt={post.author.name} />
+                  <AvatarImage
+                    src={post.author.avatar || "/placeholder.svg"}
+                    alt={post.author.name}
+                  />
                   <AvatarFallback>{post.author.name.charAt(0)}</AvatarFallback>
                 </Avatar>
                 <div className="text-sm">
                   <div className="font-medium">{post.author.name}</div>
-                  <div className="text-muted-foreground">{post.author.role}</div>
+                  <div className="text-muted-foreground">
+                    {post.author.role}
+                  </div>
                 </div>
               </div>
             </div>
@@ -82,12 +94,12 @@ export function RecentPosts() {
       </div>
 
       {visiblePosts < posts.length && (
-        <div className="flex justify-center mt-10">
+        <div className="mt-10 flex justify-center">
           <Button onClick={loadMore} variant="outline" size="lg">
             Load More Articles
           </Button>
         </div>
       )}
     </section>
-  )
+  );
 }

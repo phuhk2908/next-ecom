@@ -1,6 +1,6 @@
 import type React from "react";
 import type { Metadata } from "next";
-import { SettingsSidebar } from "@/components/settings/settings-sidebar";
+import { SettingsSidebar } from "@/app/(root)/settings/_components/settings-sidebar";
 
 export const metadata: Metadata = {
   title: "Settings",

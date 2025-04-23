@@ -1,10 +1,11 @@
 import HomeCarousel from "@/components/home/home-carousel";
-import ProductDetailGallery from "@/components/product-detail/product-detail-gallery";
-import ProductDetailInformation from "@/components/product-detail/product-detail-information";
-import ProductDetailTabs from "@/components/product-detail/product-detail-tabs";
+
 import Breadcrumbs from "@/components/shared/Breadcrumbs";
 import Newsletter from "@/components/shared/Newsletter";
+import { product } from "@/constants";
 import { memo } from "react";
+import ProductDetailTabs from "./_components/product-detail-tabs";
+import ProductDetail from "./_components/product-detail";
 
 const breadcrumbs = [
   { label: "Home", href: "/" },
@@ -27,10 +28,7 @@ const ProductDetailPage = memo(
       <main className="container">
         <Breadcrumbs breadcrumbs={breadcrumbs} className="mt-6" />
 
-        <div className="mt-9 grid grid-cols-1 gap-10 lg:grid-cols-2">
-          <ProductDetailGallery />
-          <ProductDetailInformation />
-        </div>
+        <ProductDetail product={product} />
 
         <ProductDetailTabs />
 
@@ -40,7 +38,7 @@ const ProductDetailPage = memo(
           isViewAll={false}
         />
 
-        <Newsletter isContainer={false} />
+        <Newsletter />
       </main>
     );
   },

@@ -1,3 +1,5 @@
+import { Product } from "@/types/product";
+
 export const routes: RouteItem[] = [
   {
     name: "Shop",
@@ -314,7 +316,7 @@ export const categories = [
   },
 ];
 
-export const product = {
+export const product: Product = {
   name: "Classic Cotton T-Shirt",
   price: 29.99,
   description:
@@ -325,9 +327,18 @@ export const product = {
       price: 29.99,
       inventory_stock: 11,
       images: [
-        "https://placehold.co/450x450?text=Red-XS-Front",
-        "https://placehold.co/450x450?text=Red-XS-Back",
-        "https://placehold.co/450x450?text=Red-XS-Side",
+        {
+          src: "https://placehold.co/450x450?text=Red-XS-Front",
+          alt: "Red-XS-Front",
+        },
+        {
+          src: "https://placehold.co/450x450?text=Red-XS-Back",
+          alt: "Red-XS-Back",
+        },
+        {
+          src: "https://placehold.co/450x450?text=Red-XS-Side",
+          alt: "Red-XS-Side",
+        },
       ],
       attribute_value: [
         { value: "Red", hexcode: "#E53E3E", attribute: { name: "Color" } },
@@ -339,8 +350,14 @@ export const product = {
       price: 29.99,
       inventory_stock: 5,
       images: [
-        "https://placehold.co/450x450?text=Red-S-Front",
-        "https://placehold.co/450x450?text=Red-S-Back",
+        {
+          src: "https://placehold.co/450x450?text=Red-S-Front",
+          alt: "Red-S-Front",
+        },
+        {
+          src: "https://placehold.co/450x450?text=Red-S-Back",
+          alt: "Red-S-Back",
+        },
       ],
       attribute_value: [
         { value: "Red", hexcode: "#E53E3E", attribute: { name: "Color" } },
@@ -352,9 +369,18 @@ export const product = {
       price: 32.99,
       inventory_stock: 8,
       images: [
-        "https://placehold.co/450x450?text=Blue-XS-Front",
-        "https://placehold.co/450x450?text=Blue-XS-Back",
-        "https://placehold.co/450x450?text=Blue-XS-Detail",
+        {
+          src: "https://placehold.co/450x450?text=Blue-XS-Front",
+          alt: "Blue-XS-Front",
+        },
+        {
+          src: "https://placehold.co/450x450?text=Blue-XS-Back",
+          alt: "Blue-XS-Back",
+        },
+        {
+          src: "https://placehold.co/450x450?text=Blue-XS-Detail",
+          alt: "Blue-XS-Detail",
+        },
       ],
       attribute_value: [
         { value: "Blue", hexcode: "#3182CE", attribute: { name: "Color" } },
@@ -366,10 +392,22 @@ export const product = {
       price: 29.99,
       inventory_stock: 3,
       images: [
-        "https://placehold.co/450x450?text=Black-XS-Front",
-        "https://placehold.co/450x450?text=Black-XS-Back",
-        "https://placehold.co/450x450?text=Black-XS-Side",
-        "https://placehold.co/450x450?text=Black-XS-Detail",
+        {
+          src: "https://placehold.co/450x450?text=Black-XS-Front",
+          alt: "Black-XS-Front",
+        },
+        {
+          src: "https://placehold.co/450x450?text=Black-XS-Back",
+          alt: "Black-XS-Back",
+        },
+        {
+          src: "https://placehold.co/450x450?text=Black-XS-Side",
+          alt: "Black-XS-Side",
+        },
+        {
+          src: "https://placehold.co/450x450?text=Black-XS-Detail",
+          alt: "Black-XS-Detail",
+        },
       ],
       attribute_value: [
         { value: "Black", hexcode: "#2D3748", attribute: { name: "Color" } },

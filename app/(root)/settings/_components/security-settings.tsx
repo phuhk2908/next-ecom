@@ -1,34 +1,40 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Switch } from "@/components/ui/switch"
-import { toast } from "@/hooks/use-toast"
-import { Loader2, Shield, Key, Smartphone } from "lucide-react"
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Switch } from "@/components/ui/switch";
+import { toast } from "@/hooks/use-toast";
+import { Loader2, Shield, Key, Smartphone } from "lucide-react";
 
 export function SecuritySettings() {
-  const [isChangingPassword, setIsChangingPassword] = useState(false)
-  const [isTwoFactorEnabled, setIsTwoFactorEnabled] = useState(false)
-  const [isEnabling2FA, setIsEnabling2FA] = useState(false)
+  const [isChangingPassword, setIsChangingPassword] = useState(false);
+  const [isTwoFactorEnabled, setIsTwoFactorEnabled] = useState(false);
+  const [isEnabling2FA, setIsEnabling2FA] = useState(false);
   const [passwordData, setPasswordData] = useState({
     currentPassword: "",
     newPassword: "",
     confirmPassword: "",
-  })
+  });
 
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target
-    setPasswordData((prev) => ({ ...prev, [name]: value }))
-  }
+    const { name, value } = e.target;
+    setPasswordData((prev) => ({ ...prev, [name]: value }));
+  };
 
   const handleChangePassword = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsChangingPassword(true)
+    e.preventDefault();
+    setIsChangingPassword(true);
 
     // Validate passwords
     if (passwordData.newPassword !== passwordData.confirmPassword) {
@@ -36,46 +42,48 @@ export function SecuritySettings() {
         title: "Passwords don't match",
         description: "New password and confirmation password must match.",
         variant: "destructive",
-      })
-      setIsChangingPassword(false)
-      return
+      });
+      setIsChangingPassword(false);
+      return;
     }
 
     // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1000))
+    await new Promise((resolve) => setTimeout(resolve, 1000));
 
     toast({
       title: "Password updated",
       description: "Your password has been updated successfully.",
-    })
+    });
 
     setPasswordData({
       currentPassword: "",
       newPassword: "",
       confirmPassword: "",
-    })
+    });
 
-    setIsChangingPassword(false)
-  }
+    setIsChangingPassword(false);
+  };
 
   const handleToggle2FA = async () => {
-    setIsEnabling2FA(true)
+    setIsEnabling2FA(true);
 
     // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1000))
+    await new Promise((resolve) => setTimeout(resolve, 1000));
 
-    const newState = !isTwoFactorEnabled
-    setIsTwoFactorEnabled(newState)
+    const newState = !isTwoFactorEnabled;
+    setIsTwoFactorEnabled(newState);
 
     toast({
-      title: newState ? "Two-factor authentication enabled" : "Two-factor authentication disabled",
+      title: newState
+        ? "Two-factor authentication enabled"
+        : "Two-factor authentication disabled",
       description: newState
         ? "Your account is now more secure with two-factor authentication."
         : "Two-factor authentication has been disabled for your account.",
-    })
+    });
 
-    setIsEnabling2FA(false)
-  }
+    setIsEnabling2FA(false);
+  };
 
   return (
     <div className="space-y-6">
@@ -85,7 +93,9 @@ export function SecuritySettings() {
             <Shield className="h-5 w-5 text-primary" />
             <CardTitle>Change Password</CardTitle>
           </div>
-          <CardDescription>Update your password to keep your account secure.</CardDescription>
+          <CardDescription>
+            Update your password to keep your account secure.
+          </CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleChangePassword} className="space-y-4">
@@ -124,7 +134,9 @@ export function SecuritySettings() {
             </div>
             <div className="flex justify-end">
               <Button type="submit" disabled={isChangingPassword}>
-                {isChangingPassword && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                {isChangingPassword && (
+                  <Loader2 className="animate-spin mr-2 h-4 w-4" />
+                )}
                 {isChangingPassword ? "Updating..." : "Update Password"}
               </Button>
             </div>
@@ -139,7 +151,8 @@ export function SecuritySettings() {
             <CardTitle>Two-Factor Authentication</CardTitle>
           </div>
           <CardDescription>
-            Add an extra layer of security to your account by enabling two-factor authentication.
+            Add an extra layer of security to your account by enabling
+            two-factor authentication.
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
@@ -150,7 +163,9 @@ export function SecuritySettings() {
               </div>
               <div>
                 <p className="font-medium">Authenticator App</p>
-                <p className="text-sm text-muted-foreground">Use an authenticator app to generate one-time codes.</p>
+                <p className="text-sm text-muted-foreground">
+                  Use an authenticator app to generate one-time codes.
+                </p>
               </div>
             </div>
             <Switch
@@ -162,8 +177,10 @@ export function SecuritySettings() {
           </div>
           {isTwoFactorEnabled && (
             <div className="rounded-md bg-muted p-4">
-              <p className="text-sm font-medium">Two-factor authentication is enabled</p>
-              <p className="text-xs text-muted-foreground mt-1">
+              <p className="text-sm font-medium">
+                Two-factor authentication is enabled
+              </p>
+              <p className="mt-1 text-xs text-muted-foreground">
                 Your account is protected with an additional layer of security.
               </p>
             </div>
@@ -171,5 +188,5 @@ export function SecuritySettings() {
         </CardContent>
       </Card>
     </div>
-  )
+  );
 }

@@ -1,22 +1,28 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
-import { Label } from "@/components/ui/label"
-import { toast } from "@/hooks/use-toast"
-import { Loader2, Globe } from "lucide-react"
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Label } from "@/components/ui/label";
+import { toast } from "@/hooks/use-toast";
+import { Loader2, Globe } from "lucide-react";
 
 interface Language {
-  code: string
-  name: string
-  nativeName: string
+  code: string;
+  name: string;
+  nativeName: string;
 }
 
 export function LanguageSettings() {
-  const [selectedLanguage, setSelectedLanguage] = useState("en-US")
-  const [isUpdating, setIsUpdating] = useState(false)
+  const [selectedLanguage, setSelectedLanguage] = useState("en-US");
+  const [isUpdating, setIsUpdating] = useState(false);
 
   const languages: Language[] = [
     { code: "en-US", name: "English (US)", nativeName: "English (US)" },
@@ -26,21 +32,21 @@ export function LanguageSettings() {
     { code: "de", name: "German", nativeName: "Deutsch" },
     { code: "ja", name: "Japanese", nativeName: "日��語" },
     { code: "zh-CN", name: "Chinese (Simplified)", nativeName: "简体中文" },
-  ]
+  ];
 
   const handleSaveLanguage = async () => {
-    setIsUpdating(true)
+    setIsUpdating(true);
 
     // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1000))
+    await new Promise((resolve) => setTimeout(resolve, 1000));
 
     toast({
       title: "Language updated",
       description: "Your language preference has been updated successfully.",
-    })
+    });
 
-    setIsUpdating(false)
-  }
+    setIsUpdating(false);
+  };
 
   return (
     <Card>
@@ -49,10 +55,16 @@ export function LanguageSettings() {
           <Globe className="h-5 w-5 text-primary" />
           <CardTitle>Language Preferences</CardTitle>
         </div>
-        <CardDescription>Select your preferred language for the user interface.</CardDescription>
+        <CardDescription>
+          Select your preferred language for the user interface.
+        </CardDescription>
       </CardHeader>
       <CardContent className="space-y-6">
-        <RadioGroup value={selectedLanguage} onValueChange={setSelectedLanguage} className="space-y-3">
+        <RadioGroup
+          value={selectedLanguage}
+          onValueChange={setSelectedLanguage}
+          className="space-y-3"
+        >
           {languages.map((language) => (
             <div key={language.code} className="flex items-center space-x-2">
               <RadioGroupItem value={language.code} id={language.code} />
@@ -60,7 +72,9 @@ export function LanguageSettings() {
                 <div className="flex justify-between">
                   <span>{language.name}</span>
                   {language.name !== language.nativeName && (
-                    <span className="text-muted-foreground">{language.nativeName}</span>
+                    <span className="text-muted-foreground">
+                      {language.nativeName}
+                    </span>
                   )}
                 </div>
               </Label>
@@ -70,11 +84,11 @@ export function LanguageSettings() {
 
         <div className="flex justify-end">
           <Button onClick={handleSaveLanguage} disabled={isUpdating}>
-            {isUpdating && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+            {isUpdating && <Loader2 className="animate-spin mr-2 h-4 w-4" />}
             {isUpdating ? "Saving..." : "Save Language"}
           </Button>
         </div>
       </CardContent>
     </Card>
-  )
+  );
 }
