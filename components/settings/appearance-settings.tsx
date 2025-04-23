@@ -11,7 +11,6 @@ import { Loader2, Moon, Sun, Monitor } from "lucide-react"
 export function AppearanceSettings() {
   const [theme, setTheme] = useState("system")
   const [fontSize, setFontSize] = useState("medium")
-  const [reducedMotion, setReducedMotion] = useState(false)
   const [isUpdating, setIsUpdating] = useState(false)
 
   const handleSaveAppearance = async () => {
