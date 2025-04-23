@@ -130,7 +130,7 @@ export function FaqContent() {
       <div className="bg-muted p-6 rounded-lg mt-8">
         <h3 className="text-lg font-medium mb-2">Still have questions?</h3>
         <p className="text-muted-foreground mb-4">
-          Can't find the answer you're looking for? Please contact our support team.
+          Can&apos;t find the answer you&apos;re looking for? Please contact our support team.
         </p>
         <a href="/contact">
           <Button>Contact Support</Button>
