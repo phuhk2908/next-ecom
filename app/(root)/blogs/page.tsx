@@ -1,9 +1,10 @@
-import { BlogHero } from "@/components/blog/blog-hero";
-import { CategoryList } from "@/components/blog/category-list";
-import { FeaturedPosts } from "@/components/blog/featured-posts";
-import { NewsletterSection } from "@/components/blog/newsletter-section";
-import { PopularTags } from "@/components/blog/popular-tags";
-import { RecentPosts } from "@/components/blog/recent-post";
+import { BlogHero } from "./_components/blog-hero";
+import { CategoryList } from "./_components/category-list";
+import { FeaturedPosts } from "./_components/featured-posts";
+import { NewsletterSection } from "./_components/newsletter-section";
+import { PopularTags } from "./_components/popular-tags";
+import { RecentPosts } from "./_components/recent-post";
+
 
 const BlogsPage = () => {
   return (

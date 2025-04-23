@@ -1,18 +1,17 @@
 import Image from "next/image"
 import Link from "next/link"
 import { notFound } from "next/navigation"
-import { ArrowLeft, Calendar, Clock, MessageSquare, Bookmark, Heart } from "lucide-react"
+import { ArrowLeft, Calendar, Clock, MessageSquare, Bookmark, Heart, TableOfContents } from "lucide-react"
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
-import { RelatedPosts } from "@/components/blog/related-posts"
-import { CommentSection } from "@/components/blog/comment-section"
-import { AuthorCard } from "@/components/blog/author-card"
-import { ShareButtons } from "@/components/blog/share-buttons"
-import { TableOfContents } from "@/components/blog/table-of-contents"
 import { posts } from "@/lib/blog-data"
+import { AuthorCard } from "../_components/author-card"
+import { CommentSection } from "../_components/comment-section"
+import { RelatedPosts } from "../_components/related-posts"
+import { ShareButtons } from "../_components/share-buttons"
 
 export default function BlogPost({ params }: { params: { slug: string } }) {
   const post = posts.find((post) => post.slug === params.slug)
