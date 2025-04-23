@@ -5,7 +5,6 @@ import { NewsletterSection } from "./_components/newsletter-section";
 import { PopularTags } from "./_components/popular-tags";
 import { RecentPosts } from "./_components/recent-post";
 
-
 const BlogsPage = () => {
   return (
     <main className="min-h-screen">

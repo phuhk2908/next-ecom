@@ -1,13 +1,20 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Separator } from "@/components/ui/separator"
-import { CreditCard, Plus, Trash2, CheckCircle } from "lucide-react"
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Separator } from "@/components/ui/separator";
+import { CreditCard, Plus, Trash2, CheckCircle } from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -16,29 +23,31 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
-import { toast } from "@/hooks/use-toast"
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { toast } from "@/hooks/use-toast";
 
 export function BillingSettings() {
-  const [isAddingCard, setIsAddingCard] = useState(false)
+  const [isAddingCard, setIsAddingCard] = useState(false);
 
   const handleAddCard = (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsAddingCard(false)
+    e.preventDefault();
+    setIsAddingCard(false);
     toast({
       title: "Payment method added",
       description: "Your new payment method has been added successfully.",
-    })
-  }
+    });
+  };
 
   return (
     <div className="space-y-6">
       <div>
         <h3 className="text-lg font-medium">Billing Settings</h3>
-        <p className="text-sm text-muted-foreground">Manage your subscription and payment methods</p>
+        <p className="text-sm text-muted-foreground">
+          Manage your subscription and payment methods
+        </p>
       </div>
       <Separator />
 
@@ -55,22 +64,22 @@ export function BillingSettings() {
                 <h4 className="text-xl font-semibold">Pro Plan</h4>
                 <Badge>Current</Badge>
               </div>
-              <p className="text-muted-foreground mt-1">$19.99 per month</p>
+              <p className="mt-1 text-muted-foreground">$19.99 per month</p>
               <ul className="mt-4 space-y-2 text-sm">
                 <li className="flex items-center">
-                  <CheckCircle className="h-4 w-4 text-green-500 mr-2" />
+                  <CheckCircle className="mr-2 h-4 w-4 text-green-500" />
                   Unlimited projects
                 </li>
                 <li className="flex items-center">
-                  <CheckCircle className="h-4 w-4 text-green-500 mr-2" />
+                  <CheckCircle className="mr-2 h-4 w-4 text-green-500" />
                   Advanced analytics
                 </li>
                 <li className="flex items-center">
-                  <CheckCircle className="h-4 w-4 text-green-500 mr-2" />
+                  <CheckCircle className="mr-2 h-4 w-4 text-green-500" />
                   Priority support
                 </li>
                 <li className="flex items-center">
-                  <CheckCircle className="h-4 w-4 text-green-500 mr-2" />
+                  <CheckCircle className="mr-2 h-4 w-4 text-green-500" />
                   Custom branding
                 </li>
               </ul>
@@ -93,7 +102,7 @@ export function BillingSettings() {
           <CardDescription>Manage your payment methods</CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
-          <div className="rounded-lg border p-4 flex items-center justify-between">
+          <div className="flex items-center justify-between rounded-lg border p-4">
             <div className="flex items-center gap-4">
               <div className="rounded-md bg-muted p-2">
                 <CreditCard className="h-5 w-5" />
@@ -104,7 +113,10 @@ export function BillingSettings() {
               </div>
             </div>
             <div className="flex items-center gap-2">
-              <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200">
+              <Badge
+                variant="outline"
+                className="border-green-200 bg-green-50 text-green-700"
+              >
                 Default
               </Badge>
               <Button variant="ghost" size="icon">
@@ -116,14 +128,16 @@ export function BillingSettings() {
           <Dialog open={isAddingCard} onOpenChange={setIsAddingCard}>
             <DialogTrigger asChild>
               <Button variant="outline" className="w-full">
-                <Plus className="h-4 w-4 mr-2" />
+                <Plus className="mr-2 h-4 w-4" />
                 Add Payment Method
               </Button>
             </DialogTrigger>
             <DialogContent className="sm:max-w-[425px]">
               <DialogHeader>
                 <DialogTitle>Add Payment Method</DialogTitle>
-                <DialogDescription>Add a new credit or debit card to your account</DialogDescription>
+                <DialogDescription>
+                  Add a new credit or debit card to your account
+                </DialogDescription>
               </DialogHeader>
               <form onSubmit={handleAddCard}>
                 <div className="grid gap-4 py-4">
@@ -133,7 +147,11 @@ export function BillingSettings() {
                   </div>
                   <div className="grid gap-2">
                     <Label htmlFor="number">Card Number</Label>
-                    <Input id="number" placeholder="•••• •••• •••• ••••" required />
+                    <Input
+                      id="number"
+                      placeholder="•••• •••• •••• ••••"
+                      required
+                    />
                   </div>
                   <div className="grid grid-cols-2 gap-4">
                     <div className="grid gap-2">
@@ -164,7 +182,11 @@ export function BillingSettings() {
                   </div>
                 </div>
                 <DialogFooter>
-                  <Button type="button" variant="outline" onClick={() => setIsAddingCard(false)}>
+                  <Button
+                    type="button"
+                    variant="outline"
+                    onClick={() => setIsAddingCard(false)}
+                  >
                     Cancel
                   </Button>
                   <Button type="submit">Add Card</Button>
@@ -195,7 +217,10 @@ export function BillingSettings() {
               <div>Pro Plan - Monthly</div>
               <div>$19.99</div>
               <div className="text-right">
-                <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200">
+                <Badge
+                  variant="outline"
+                  className="border-green-200 bg-green-50 text-green-700"
+                >
                   Paid
                 </Badge>
               </div>
@@ -206,7 +231,10 @@ export function BillingSettings() {
               <div>Pro Plan - Monthly</div>
               <div>$19.99</div>
               <div className="text-right">
-                <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200">
+                <Badge
+                  variant="outline"
+                  className="border-green-200 bg-green-50 text-green-700"
+                >
                   Paid
                 </Badge>
               </div>
@@ -217,7 +245,10 @@ export function BillingSettings() {
               <div>Pro Plan - Monthly</div>
               <div>$19.99</div>
               <div className="text-right">
-                <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200">
+                <Badge
+                  variant="outline"
+                  className="border-green-200 bg-green-50 text-green-700"
+                >
                   Paid
                 </Badge>
               </div>
@@ -231,5 +262,5 @@ export function BillingSettings() {
         </CardFooter>
       </Card>
     </div>
-  )
+  );
 }

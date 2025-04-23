@@ -96,11 +96,7 @@ const AddressForm = () => {
               Street name and house number{" "}
               <span className="text-red-500">*</span>
             </Label>
-            <Input
-              id="street"
-              placeholder="Enter your street name"
-              required
-            />
+            <Input id="street" placeholder="Enter your street name" required />
           </div>
 
           <div className="space-y-2">

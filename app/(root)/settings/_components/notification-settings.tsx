@@ -1,21 +1,34 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Switch } from "@/components/ui/switch"
-import { toast } from "@/hooks/use-toast"
-import { Loader2, Bell, Mail, MessageSquare, Heart, UserPlus } from "lucide-react"
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Switch } from "@/components/ui/switch";
+import { toast } from "@/hooks/use-toast";
+import {
+  Loader2,
+  Bell,
+  Mail,
+  MessageSquare,
+  Heart,
+  UserPlus,
+} from "lucide-react";
 
 interface NotificationSetting {
-  id: string
-  title: string
-  description: string
-  icon: React.ElementType
-  email: boolean
-  push: boolean
+  id: string;
+  title: string;
+  description: string;
+  icon: React.ElementType;
+  email: boolean;
+  push: boolean;
 }
 
 export function NotificationSettings() {
@@ -55,14 +68,15 @@ export function NotificationSettings() {
     {
       id: "newsletter",
       title: "Newsletter",
-      description: "Receive our newsletter with product updates and industry news.",
+      description:
+        "Receive our newsletter with product updates and industry news.",
       icon: Bell,
       email: true,
       push: false,
     },
-  ])
+  ]);
 
-  const [isUpdating, setIsUpdating] = useState(false)
+  const [isUpdating, setIsUpdating] = useState(false);
 
   const handleToggle = (id: string, type: "email" | "push") => {
     setSettings(
@@ -71,32 +85,35 @@ export function NotificationSettings() {
           return {
             ...setting,
             [type]: !setting[type],
-          }
+          };
         }
-        return setting
+        return setting;
       }),
-    )
-  }
+    );
+  };
 
   const handleSaveNotifications = async () => {
-    setIsUpdating(true)
+    setIsUpdating(true);
 
     // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1000))
+    await new Promise((resolve) => setTimeout(resolve, 1000));
 
     toast({
       title: "Notification preferences updated",
-      description: "Your notification preferences have been updated successfully.",
-    })
+      description:
+        "Your notification preferences have been updated successfully.",
+    });
 
-    setIsUpdating(false)
-  }
+    setIsUpdating(false);
+  };
 
   return (
     <Card>
       <CardHeader>
         <CardTitle>Notification Preferences</CardTitle>
-        <CardDescription>Choose how and when you want to be notified.</CardDescription>
+        <CardDescription>
+          Choose how and when you want to be notified.
+        </CardDescription>
       </CardHeader>
       <CardContent className="space-y-6">
         <div className="grid grid-cols-3 gap-4 text-center text-sm font-medium">
@@ -106,14 +123,19 @@ export function NotificationSettings() {
         </div>
         <div className="space-y-4">
           {settings.map((setting) => (
-            <div key={setting.id} className="grid grid-cols-3 items-center gap-4">
+            <div
+              key={setting.id}
+              className="grid grid-cols-3 items-center gap-4"
+            >
               <div className="flex items-center gap-4">
                 <div className="rounded-full bg-muted p-2">
                   <setting.icon className="h-4 w-4" />
                 </div>
                 <div className="text-sm">
                   <p className="font-medium">{setting.title}</p>
-                  <p className="text-xs text-muted-foreground hidden sm:block">{setting.description}</p>
+                  <p className="hidden text-xs text-muted-foreground sm:block">
+                    {setting.description}
+                  </p>
                 </div>
               </div>
               <div className="flex justify-center">
@@ -135,11 +157,11 @@ export function NotificationSettings() {
         </div>
         <div className="flex justify-end">
           <Button onClick={handleSaveNotifications} disabled={isUpdating}>
-            {isUpdating && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+            {isUpdating && <Loader2 className="animate-spin mr-2 h-4 w-4" />}
             {isUpdating ? "Saving..." : "Save Preferences"}
           </Button>
         </div>
       </CardContent>
     </Card>
-  )
+  );
 }

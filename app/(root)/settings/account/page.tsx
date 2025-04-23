@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import { AccountInfo } from "@/components/settings/account-info";
-import { PersonalInfo } from "@/components/settings/personal-info";
-import { ConnectedAccounts } from "@/components/settings/connected-account";
+import { AccountInfo } from "@/app/(root)/settings/_components/account-info";
+import { PersonalInfo } from "@/app/(root)/settings/_components/personal-info";
+import { ConnectedAccounts } from "@/app/(root)/settings/_components/connected-account";
 
 export const metadata: Metadata = {
   title: "Account Settings",

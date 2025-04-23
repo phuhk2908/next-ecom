@@ -1,10 +1,15 @@
-"use client"
+"use client";
 
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
 
-import { useState } from "react"
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { useState } from "react";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 // FAQ data organized by categories
 const faqData = {
@@ -96,15 +101,20 @@ const faqData = {
         "To update your billing information, go to Settings > Billing > Payment Methods. You can add, edit, or remove payment methods, and update your billing address and contact information.",
     },
   ],
-}
+};
 
 export function FaqContent() {
-  const [activeTab, setActiveTab] = useState("general")
+  const [activeTab, setActiveTab] = useState("general");
 
   return (
     <div className="space-y-6">
-      <Tabs defaultValue="general" value={activeTab} onValueChange={setActiveTab} className="w-full">
-        <TabsList className="grid grid-cols-4 mb-8">
+      <Tabs
+        defaultValue="general"
+        value={activeTab}
+        onValueChange={setActiveTab}
+        className="w-full"
+      >
+        <TabsList className="mb-8 grid grid-cols-4">
           <TabsTrigger value="general">General</TabsTrigger>
           <TabsTrigger value="account">Account</TabsTrigger>
           <TabsTrigger value="content">Content</TabsTrigger>
@@ -116,7 +126,9 @@ export function FaqContent() {
             <Accordion type="single" collapsible className="w-full">
               {questions.map((faq, index) => (
                 <AccordionItem key={index} value={`item-${index}`}>
-                  <AccordionTrigger className="text-left">{faq.question}</AccordionTrigger>
+                  <AccordionTrigger className="text-left">
+                    {faq.question}
+                  </AccordionTrigger>
                   <AccordionContent>
                     <p className="text-muted-foreground">{faq.answer}</p>
                   </AccordionContent>
@@ -127,15 +139,16 @@ export function FaqContent() {
         ))}
       </Tabs>
 
-      <div className="bg-muted p-6 rounded-lg mt-8">
-        <h3 className="text-lg font-medium mb-2">Still have questions?</h3>
-        <p className="text-muted-foreground mb-4">
-          Can&apos;t find the answer you&apos;re looking for? Please contact our support team.
+      <div className="mt-8 rounded-lg bg-muted p-6">
+        <h3 className="mb-2 text-lg font-medium">Still have questions?</h3>
+        <p className="mb-4 text-muted-foreground">
+          Can&apos;t find the answer you&apos;re looking for? Please contact our
+          support team.
         </p>
         <a href="/contact">
           <Button>Contact Support</Button>
         </a>
       </div>
     </div>
-  )
+  );
 }
