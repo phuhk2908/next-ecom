@@ -4,10 +4,10 @@ import { ChevronRight, SlidersVertical, X } from "lucide-react";
 import { Separator } from "./ui/separator";
 import { Dispatch, SetStateAction, useState } from "react";
 import { DualSlider } from "./ui/dual-slider";
-import ColorRadio from "./shared/ColorRadio";
-import SizeRadio from "./shared/SizeRadio";
+import ColorRadio from "./shared/color-radio";
+import SizeRadio from "./shared/size-radio";
 import { Button } from "./ui/button";
-import ExpandableContainer from "./shared/ExpandableContainer";
+import ExpandableContainer from "./shared/expandable-container";
 
 interface ProductFilterProps {
   setOpen?: Dispatch<SetStateAction<boolean>>;

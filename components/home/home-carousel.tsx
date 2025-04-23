@@ -3,7 +3,7 @@ import {
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel";
-import ProductCard from "../ProductCard";
+import ProductCard from "../product-card";
 import { Button } from "../ui/button";
 import { cn } from "@/lib/utils";
 

@@ -1,4 +1,4 @@
-import QuantitySelector from "@/components/QuantitySelector";
+import QuantitySelector from "@/components/quantity-selector";
 import Breadcrumbs from "@/components/shared/Breadcrumbs";
 import Newsletter from "@/components/shared/Newsletter";
 import { AspectRatio } from "@/components/ui/aspect-ratio";

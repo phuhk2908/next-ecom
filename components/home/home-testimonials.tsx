@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import TestimonialCard from "../TestimonialCard";
+import TestimonialCard from "../testimonial-card";
 import {
   Carousel,
   CarouselContent,

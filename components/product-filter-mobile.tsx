@@ -3,7 +3,7 @@
 import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/drawer";
 
 import { SlidersVertical } from "lucide-react";
-import ProductFilter from "./ProductFilter";
+import ProductFilter from "./product-filter";
 import { useState } from "react";
 
 const ProductFilterMobile = () => {
