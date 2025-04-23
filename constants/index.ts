@@ -313,3 +313,68 @@ export const categories = [
     children: [],
   },
 ];
+
+export const product = {
+  name: "Classic Cotton T-Shirt",
+  price: 29.99,
+  description:
+    "Our premium cotton t-shirt combines comfort with style, perfect for everyday wear.",
+  variant: [
+    {
+      name: "Red-XS",
+      price: 29.99,
+      inventory_stock: 11,
+      images: [
+        "https://placehold.co/450x450?text=Red-XS-Front",
+        "https://placehold.co/450x450?text=Red-XS-Back",
+        "https://placehold.co/450x450?text=Red-XS-Side",
+      ],
+      attribute_value: [
+        { value: "Red", hexcode: "#E53E3E", attribute: { name: "Color" } },
+        { value: "XS", attribute: { name: "Size" } },
+      ],
+    },
+    {
+      name: "Red-S",
+      price: 29.99,
+      inventory_stock: 5,
+      images: [
+        "https://placehold.co/450x450?text=Red-S-Front",
+        "https://placehold.co/450x450?text=Red-S-Back",
+      ],
+      attribute_value: [
+        { value: "Red", hexcode: "#E53E3E", attribute: { name: "Color" } },
+        { value: "S", attribute: { name: "Size" } },
+      ],
+    },
+    {
+      name: "Blue-XS",
+      price: 32.99,
+      inventory_stock: 8,
+      images: [
+        "https://placehold.co/450x450?text=Blue-XS-Front",
+        "https://placehold.co/450x450?text=Blue-XS-Back",
+        "https://placehold.co/450x450?text=Blue-XS-Detail",
+      ],
+      attribute_value: [
+        { value: "Blue", hexcode: "#3182CE", attribute: { name: "Color" } },
+        { value: "XS", attribute: { name: "Size" } },
+      ],
+    },
+    {
+      name: "Black-XS",
+      price: 29.99,
+      inventory_stock: 3,
+      images: [
+        "https://placehold.co/450x450?text=Black-XS-Front",
+        "https://placehold.co/450x450?text=Black-XS-Back",
+        "https://placehold.co/450x450?text=Black-XS-Side",
+        "https://placehold.co/450x450?text=Black-XS-Detail",
+      ],
+      attribute_value: [
+        { value: "Black", hexcode: "#2D3748", attribute: { name: "Color" } },
+        { value: "XS", attribute: { name: "Size" } },
+      ],
+    },
+  ],
+};
