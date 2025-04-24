@@ -1,11 +1,11 @@
 import HomeCarousel from "@/components/home/home-carousel";
 
-import Breadcrumbs from "@/components/shared/Breadcrumbs";
 import Newsletter from "@/components/shared/Newsletter";
 import { product } from "@/constants";
 import { memo } from "react";
 import ProductDetailTabs from "./_components/product-detail-tabs";
 import ProductDetail from "./_components/product-detail";
+import Breadcrumbs from "@/components/shared/breadcrumbs";
 
 const breadcrumbs = [
   { label: "Home", href: "/" },
@@ -26,7 +26,7 @@ const ProductDetailPage = memo(
     console.log(categorySlug, productSlug);
     return (
       <main className="container">
-        <Breadcrumbs breadcrumbs={breadcrumbs} className="mt-6" />
+        <Breadcrumbs breadcrumbs={breadcrumbs} />
 
         <ProductDetail product={product} />
 

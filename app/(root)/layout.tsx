@@ -1,5 +1,5 @@
-import Footer from "@/components/Footer";
-import Header from "@/components/Header";
+import Footer from "@/components/footer";
+import Header from "@/components/header";
 import TransitionProvider from "@/components/providers/transition-provider";
 import { ReactNode } from "react";
 
