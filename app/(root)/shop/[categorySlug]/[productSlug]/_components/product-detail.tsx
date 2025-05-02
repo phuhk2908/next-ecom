@@ -1,136 +1,263 @@
 "use client";
 
-import { Product, Variant } from "@/types/product";
-import { useEffect, useState } from "react";
-import ImageGallery from "./image-gallery";
-import QuantitySelector from "../../../../../../components/quantity-selector";
-import VariantSelector from "./variant-selector";
-import { Button } from "../../../../../../components/ui/button";
-import { Skeleton } from "../../../../../../components/ui/skeleton";
+import { useState, useEffect } from "react";
+import ProductImages from "./product-images";
+import { AddToCartButton } from "./add-to-cart-button";
+import { AttributeSelector } from "./attribute-selector";
+import { InventoryStatus } from "./inventory-status";
+import { ProductDescription } from "./product-description";
+import ProductInfo from "./product-info";
+import { QuantitySelector } from "./quantity-selector";
 
-interface ProductDetailProps {
-  product: Product;
-}
+// // Define types
+// type AttributeValue = {
+//   id: number;
+//   values: {
+//     id: number;
+//     id_attributes: number;
+//     value: string;
+//     attribute: {
+//       name: string;
+//     };
+//   };
+// };
 
-const ProductDetailSkeleton = () => {
-  return (
-    <div>
-      <Skeleton className="h-9 w-2/3" />
+// type ProductImage = {
+//   image: {
+//     id: number;
+//     url: string;
+//     alt_text: string;
+//     deleted_at: null;
+//     created_at: string;
+//     updated_at: string;
+//   };
+// };
 
-      <div className="mt-4">
-        <Skeleton className="h-7 w-24" />
-      </div>
+// type Variant = {
+//   id: number;
+//   sku: string;
+//   price: string;
+//   weight: string;
+//   inventory_quantity: number;
+//   is_active: boolean;
+//   deleted_at: null;
+//   created_at: string;
+//   updated_at: string;
+//   attribute_values: AttributeValue[];
+//   product_images: ProductImage[];
+// };
 
-      <Skeleton className="mt-4 h-20 w-full" />
+// type Product = {
+//   id: number;
+//   description: string;
+//   id_type: number;
+//   slug: string;
+//   id_category: number;
+//   name: string;
+//   rating: null;
+//   is_active: boolean;
+//   deleted_at: null;
+//   created_at: string;
+//   updated_at: string;
+//   category: {
+//     name: string;
+//     level: number;
+//     slug: string;
+//   };
+//   _count: {
+//     variants: number;
+//   };
+//   type: {
+//     name: string;
+//   };
+//   variants: Variant[];
+// };
 
-      {/* Variant Selectors Skeleton */}
-      <div className="mt-6 space-y-6">
-        <div className="space-y-3">
-          <Skeleton className="h-6 w-32" />
-          <div className="flex gap-2">
-            {[...Array(4)].map((_, i) => (
-              <Skeleton key={i} className="h-6 w-6 rounded-full" />
-            ))}
-          </div>
-        </div>
-      </div>
+// type AttributeOption = {
+//   name: string;
+//   values: string[];
+// };
 
-      {/* Quantity Selector Skeleton */}
-      <div className="mt-6">
-        <Skeleton className="h-5 w-16" />
-        <div className="mt-2 flex w-28 items-center justify-between">
-          <Skeleton className="h-8 w-8" />
-          <Skeleton className="h-8 w-8" />
-          <Skeleton className="h-8 w-8" />
-        </div>
-      </div>
+// // Type for inventory by attribute
+// type InventoryByAttribute = {
+//   [attributeName: string]: {
+//     [attributeValue: string]: number;
+//   };
+// };
 
-      {/* Inventory Status Skeleton */}
-      <div className="mt-4">
-        <Skeleton className="h-5 w-20" />
-      </div>
-
-      <div className="mt-3">
-        <Skeleton className="h-10 w-28" />
-      </div>
-    </div>
-  );
-};
-
-const ProductDetail = ({ product }: ProductDetailProps) => {
+export default function ProductDetail({ product }: { product: Product }) {
+  const [quantity, setQuantity] = useState(1);
+  const [selectedVariant, setSelectedVariant] = useState<Variant | null>(null);
   const [selectedAttributes, setSelectedAttributes] = useState<
     Record<string, string>
   >({});
-  const [selectedVariant, setSelectedVariant] = useState<Variant | null>(null);
-  const [quantity, setQuantity] = useState(1);
+  const [availableAttributes, setAvailableAttributes] = useState<
+    AttributeOption[]
+  >([]);
+  const [inventoryByAttribute, setInventoryByAttribute] =
+    useState<InventoryByAttribute>({});
+  const [availableAttributeValues, setAvailableAttributeValues] = useState<
+    Record<string, string[]>
+  >({});
 
-  const getUniqueAttributes = () => {
-    const attributes: Record<string, Set<string | Record<string, string>>> = {};
+  // Calculate inventory by attribute
+  useEffect(() => {
+    if (!product.variants.length) return;
 
-    product.variant.forEach((variant: Variant) => {
-      variant.attribute_value.forEach((attr: any) => {
-        const attrName = attr.attribute.name;
+    const inventoryMap: InventoryByAttribute = {};
 
-        if (!attributes[attrName]) {
-          attributes[attrName] = new Set();
+    // Initialize inventory map for each attribute and value
+    product.variants.forEach((variant) => {
+      variant.attribute_values.forEach((attrValue) => {
+        const name = attrValue.values.attribute.name;
+        const value = attrValue.values.value;
+
+        if (!inventoryMap[name]) {
+          inventoryMap[name] = {};
         }
 
-        if (attrName === "Color") {
-          attributes[attrName].add(
-            JSON.stringify({
-              value: attr.value,
-              hexcode: attr.hexcode,
-            }),
-          );
-        } else {
-          attributes[attrName].add(attr.value);
+        if (!inventoryMap[name][value]) {
+          inventoryMap[name][value] = 0;
         }
+
+        // Add inventory quantity to the attribute value
+        inventoryMap[name][value] += variant.inventory_quantity;
       });
     });
 
-    return Object.entries(attributes).map(([name, values]) => ({
-      name,
-      values: Array.from(values).map((value) =>
-        name === "Color" ? JSON.parse(value as string) : value,
-      ),
-    }));
-  };
+    setInventoryByAttribute(inventoryMap);
+  }, [product.variants]);
 
-  const attributes = getUniqueAttributes();
-
+  // Extract all available attributes from variants
   useEffect(() => {
-    const defaults: Record<string, string> = {};
-    attributes.forEach((attr) => {
-      if (attr.name === "Color") {
-        defaults[attr.name] = (attr.values[0] as any).value;
-      } else {
-        defaults[attr.name] = attr.values[0] as string;
-      }
+    if (!product.variants.length) return;
+
+    // Set default variant to the first one
+    setSelectedVariant(product.variants[0]);
+
+    // Extract all unique attributes
+    const attributeMap = new Map<string, Set<string>>();
+
+    product.variants.forEach((variant) => {
+      variant.attribute_values.forEach((attrValue) => {
+        const name = attrValue.values.attribute.name;
+        const value = attrValue.values.value;
+
+        if (!attributeMap.has(name)) {
+          attributeMap.set(name, new Set());
+        }
+        attributeMap.get(name)?.add(value);
+      });
     });
-    setSelectedAttributes(defaults);
-  }, []);
 
+    // Convert to array of attribute options
+    const attributes: AttributeOption[] = [];
+    attributeMap.forEach((values, name) => {
+      attributes.push({
+        name,
+        values: Array.from(values),
+      });
+    });
+
+    setAvailableAttributes(attributes);
+
+    // Set default selected attributes from first variant
+    const defaultAttributes: Record<string, string> = {};
+    product.variants[0].attribute_values.forEach((attrValue) => {
+      const name = attrValue.values.attribute.name;
+      const value = attrValue.values.value;
+      defaultAttributes[name] = value;
+    });
+
+    setSelectedAttributes(defaultAttributes);
+  }, [product]);
+
+  // Update available attribute values based on current selection
   useEffect(() => {
-    if (Object.keys(selectedAttributes).length === attributes.length) {
-      const matchingVariant = product.variant.find((variant) => {
-        return Object.entries(selectedAttributes).every(
-          ([attrName, attrValue]) => {
-            return variant.attribute_value.some(
-              (av) => av.attribute.name === attrName && av.value === attrValue,
+    if (
+      !product.variants.length ||
+      Object.keys(selectedAttributes).length === 0
+    )
+      return;
+
+    const newAvailableValues: Record<string, string[]> = {};
+
+    // For each attribute
+    availableAttributes.forEach((attribute) => {
+      const attributeName = attribute.name;
+
+      // Skip the attribute we're currently checking
+      const otherAttributes = { ...selectedAttributes };
+
+      // Find all possible values for this attribute given other selections
+      const possibleValues = new Set<string>();
+
+      product.variants.forEach((variant) => {
+        // Check if this variant matches our other selected attributes
+        const matchesOtherAttributes = Object.entries(otherAttributes)
+          .filter(([name]) => name !== attributeName)
+          .every(([name, value]) => {
+            return variant.attribute_values.some(
+              (av) =>
+                av.values.attribute.name === name && av.values.value === value,
             );
-          },
-        );
+          });
+
+        // If it matches, add its value for the current attribute to possible values
+        if (matchesOtherAttributes) {
+          const attrValue = variant.attribute_values.find(
+            (av) => av.values.attribute.name === attributeName,
+          );
+          if (attrValue && variant.inventory_quantity > 0) {
+            possibleValues.add(attrValue.values.value);
+          }
+        }
       });
 
-      setSelectedVariant(matchingVariant || null);
+      newAvailableValues[attributeName] = Array.from(possibleValues);
 
-      if (matchingVariant) {
-        setQuantity(1);
+      // If current selection is not in available values, select first available
+      if (
+        selectedAttributes[attributeName] &&
+        !newAvailableValues[attributeName].includes(
+          selectedAttributes[attributeName],
+        )
+      ) {
+        if (newAvailableValues[attributeName].length > 0) {
+          setSelectedAttributes((prev) => ({
+            ...prev,
+            [attributeName]: newAvailableValues[attributeName][0],
+          }));
+        }
       }
-    } else {
-      setSelectedVariant(null);
+    });
+
+    setAvailableAttributeValues(newAvailableValues);
+  }, [product.variants, availableAttributes, selectedAttributes]);
+
+  // Find matching variant when attributes change
+  useEffect(() => {
+    if (Object.keys(selectedAttributes).length === 0) return;
+
+    // Find variant that matches all selected attributes
+    const matchingVariant = product.variants.find((variant) => {
+      // Check if all selected attributes match this variant
+      return Object.entries(selectedAttributes).every(
+        ([attrName, attrValue]) => {
+          return variant.attribute_values.some(
+            (av) =>
+              av.values.attribute.name === attrName &&
+              av.values.value === attrValue,
+          );
+        },
+      );
+    });
+
+    if (matchingVariant) {
+      setSelectedVariant(matchingVariant);
+      setQuantity(1); // Reset quantity when variant changes
     }
-  }, [selectedAttributes, product.variant, attributes.length]);
+  }, [selectedAttributes, product.variants]);
 
   const handleAttributeChange = (attributeName: string, value: string) => {
     setSelectedAttributes((prev) => ({
@@ -139,92 +266,85 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
     }));
   };
 
-  // Check if a specific attribute value combination is available
-  const isAttributeValueAvailable = (
-    attributeName: string,
-    attributeValue: string,
-  ) => {
-    return product.variant.some(
-      (v) =>
-        v.attribute_value.some(
-          (attr) =>
-            attr.attribute.name === attributeName &&
-            attr.value === attributeValue,
-        ) &&
-        // For non-color attributes, also check that the selected color is compatible
-        (attributeName === "Color" ||
-          v.attribute_value.some(
-            (attr) =>
-              attr.attribute.name === "Color" &&
-              attr.value === selectedAttributes["Color"],
-          )) &&
-        v.inventory_stock > 0,
-    );
+  const incrementQuantity = () => {
+    if (selectedVariant && quantity < selectedVariant.inventory_quantity) {
+      setQuantity((prev) => prev + 1);
+    }
   };
 
+  const decrementQuantity = () => {
+    if (quantity > 1) {
+      setQuantity((prev) => prev - 1);
+    }
+  };
+
+  const addToCart = () => {
+    if (!selectedVariant) return;
+
+    // Here you would implement your cart logic
+    console.log("Adding to cart:", {
+      productId: product.id,
+      variantId: selectedVariant.id,
+      quantity,
+      price: selectedVariant.price,
+      attributes: selectedAttributes,
+    });
+
+    alert(`Added ${quantity} item(s) to cart`);
+  };
+
+  if (!product) return <div>Product not found</div>;
+
   return (
-    <div className="mt-9 grid grid-cols-1 gap-10 lg:grid-cols-2">
-      <ImageGallery variant={selectedVariant} productName={product.name} />
+    <div className="grid gap-8 md:grid-cols-2">
+      {/* Product Images */}
+      <ProductImages
+        images={selectedVariant?.product_images || []}
+        productName={product.name}
+      />
 
-      {!selectedVariant ? (
-        <ProductDetailSkeleton />
-      ) : (
-        <div>
-          <h1 className="text-3xl font-bold text-gray-800">{product.name}</h1>
+      {/* Product Details */}
+      <div className="space-y-6">
+        <ProductInfo
+          name={product.name}
+          category={product.category}
+          sku={selectedVariant?.sku || ""}
+          price={selectedVariant?.price || "0"}
+        />
 
-          <div className="mt-4">
-            <p className="text-xl font-semibold text-gray-900">
-              $
-              {selectedVariant
-                ? selectedVariant.price.toFixed(2)
-                : product.price.toFixed(2)}
-            </p>
-          </div>
+        {/* Attributes Selection */}
+        <AttributeSelector
+          attributes={availableAttributes}
+          selectedAttributes={selectedAttributes}
+          inventoryByAttribute={inventoryByAttribute}
+          availableAttributeValues={availableAttributeValues}
+          onAttributeChange={handleAttributeChange}
+        />
 
-          <p className="mt-4 text-gray-600">{product.description}</p>
+        {/* Inventory Status */}
+        <InventoryStatus
+          inventoryQuantity={selectedVariant?.inventory_quantity || 0}
+        />
 
-          {/* Variant Selectors */}
-          <div className="mt-6 space-y-6">
-            <VariantSelector
-              attributes={attributes}
-              selectedAttributes={selectedAttributes}
-              onChange={handleAttributeChange}
-              isAttributeValueAvailable={isAttributeValueAvailable}
-            />
-          </div>
+        {/* Quantity Selector */}
+        <QuantitySelector
+          quantity={quantity}
+          maxQuantity={selectedVariant?.inventory_quantity || 0}
+          onIncrement={incrementQuantity}
+          onDecrement={decrementQuantity}
+        />
 
-          {/* Quantity Selector */}
-          <div className="mt-6">
-            <h3 className="text-sm font-medium text-gray-900">Quantity</h3>
-            <QuantitySelector
-              quantity={quantity}
-              setQuantity={setQuantity}
-              max={selectedVariant?.inventory_stock || 0}
-            />
-          </div>
+        {/* Add to Cart Button */}
+        <AddToCartButton
+          disabled={
+            !selectedVariant || selectedVariant.inventory_quantity === 0
+          }
+          onClick={addToCart}
+        />
 
-          {/* Inventory Status */}
-          {selectedVariant && (
-            <div className="mt-4">
-              <p
-                className={`text-sm ${selectedVariant.inventory_stock > 5 ? "text-green-600" : selectedVariant.inventory_stock > 0 ? "text-yellow-600" : "text-red-600"}`}
-              >
-                {selectedVariant.inventory_stock > 5
-                  ? "In Stock"
-                  : selectedVariant.inventory_stock > 0
-                    ? `Low Stock - Only ${selectedVariant.inventory_stock} left`
-                    : "Out of Stock"}
-              </p>
-            </div>
-          )}
-
-          <div className="mt-3">
-            <Button size="lg">Add to cart</Button>
-          </div>
-        </div>
-      )}
+        {/* Product Description */}
+        <ProductDescription description={product.description} />
+      </div>
     </div>
   );
-};
-
-export default ProductDetail;
+}

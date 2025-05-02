@@ -1,4 +1,4 @@
-import Breadcrumbs from "@/components/shared/Breadcrumbs";
+import Breadcrumbs from "@/components/shared/breadcrumbs";
 import ProductFilter from "@/components/product-filter";
 import ProductList from "@/components/product-list";
 import {

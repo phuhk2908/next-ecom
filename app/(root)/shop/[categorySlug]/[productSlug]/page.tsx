@@ -1,11 +1,8 @@
-import HomeCarousel from "@/components/home/home-carousel";
-
-import Newsletter from "@/components/shared/Newsletter";
 import { product } from "@/constants";
-import { memo } from "react";
-import ProductDetailTabs from "./_components/product-detail-tabs";
-import ProductDetail from "./_components/product-detail";
 import Breadcrumbs from "@/components/shared/breadcrumbs";
+import ProductDetail from "@/app/(root)/shop/[categorySlug]/[productSlug]/_components/product-detail";
+import { notFound } from "next/navigation";
+import ProductDetailTabs from "./_components/product-detail-tabs";
 
 const breadcrumbs = [
   { label: "Home", href: "/" },
@@ -21,29 +18,22 @@ interface ProductDetailPageProps {
   };
 }
 
-const ProductDetailPage = memo(
-  ({ params: { categorySlug, productSlug } }: ProductDetailPageProps) => {
-    console.log(categorySlug, productSlug);
-    return (
-      <main className="container">
-        <Breadcrumbs breadcrumbs={breadcrumbs} />
+const ProductDetailPage = async ({
+  params: { categorySlug, productSlug },
+}: ProductDetailPageProps) => {
+  if (!product) {
+    notFound();
+  }
 
-        <ProductDetail product={product} />
+  return (
+    <main className="container">
+      <Breadcrumbs breadcrumbs={breadcrumbs} className="my-4" />
 
-        <ProductDetailTabs />
+      <ProductDetail product={product} />
 
-        <HomeCarousel
-          title="You might also like"
-          isContainer={false}
-          isViewAll={false}
-        />
-
-        <Newsletter />
-      </main>
-    );
-  },
-);
-
-ProductDetailPage.displayName = "ProductDetailPage";
+      <ProductDetailTabs />
+    </main>
+  );
+};
 
 export default ProductDetailPage;

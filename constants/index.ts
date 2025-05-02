@@ -143,7 +143,7 @@ export const categories = [
     name: "Men",
     path: "men",
     level: 0,
-    slug: "men",
+    slug: "shop/men",
     description: "Men's fashion and accessories",
     productCount: 1200,
     children: [
@@ -216,7 +216,7 @@ export const categories = [
     name: "Women",
     path: "women",
     level: 0,
-    slug: "women",
+    slug: "shop/women",
     description: "Women's fashion and accessories",
     productCount: 1500,
     children: [
@@ -316,102 +316,406 @@ export const categories = [
   },
 ];
 
-export const product: Product = {
-  name: "Classic Cotton T-Shirt",
-  price: 29.99,
+export const product = {
+  // Enhanced product data with more variants, sizes, and colors
+  id: 7,
   description:
-    "Our premium cotton t-shirt combines comfort with style, perfect for everyday wear.",
-  variant: [
+    "Premium quality product with multiple color and size options. Made with high-quality materials for durability and comfort.",
+  id_type: 1,
+  slug: "this-is-an-example-product",
+  id_category: 3,
+  name: "This is an example product",
+  rating: null,
+  is_active: true,
+  deleted_at: null,
+  created_at: "2025-04-28T14:20:42.885Z",
+  updated_at: "2025-04-28T14:20:42.885Z",
+  category: {
+    name: "Category 03",
+    level: 1,
+    slug: "category-03",
+  },
+  _count: {
+    variants: 8,
+  },
+  type: {
+    name: "VariantProduct",
+  },
+  variants: [
     {
-      name: "Red-XS",
-      price: 29.99,
-      inventory_stock: 11,
-      images: [
+      id: 1,
+      sku: "RED-S-001",
+      price: "12.9",
+      weight: "20",
+      inventory_quantity: 12,
+      is_active: true,
+      deleted_at: null,
+      created_at: "2025-04-28T14:20:42.890Z",
+      updated_at: "2025-04-28T14:20:42.890Z",
+      attribute_values: [
         {
-          src: "https://placehold.co/450x450?text=Red-XS-Front",
-          alt: "Red-XS-Front",
+          id: 1,
+          values: {
+            id: 1,
+            id_attributes: 1,
+            value: "Red",
+            attribute: {
+              name: "Color",
+            },
+          },
         },
         {
-          src: "https://placehold.co/450x450?text=Red-XS-Back",
-          alt: "Red-XS-Back",
-        },
-        {
-          src: "https://placehold.co/450x450?text=Red-XS-Side",
-          alt: "Red-XS-Side",
+          id: 2,
+          values: {
+            id: 2,
+            id_attributes: 2,
+            value: "S",
+            attribute: {
+              name: "Size",
+            },
+          },
         },
       ],
-      attribute_value: [
-        { value: "Red", hexcode: "#E53E3E", attribute: { name: "Color" } },
-        { value: "XS", attribute: { name: "Size" } },
+      product_images: [
+        {
+          image: {
+            id: 1,
+            url: "https://placehold.co/600x400?text=Red+S",
+            alt_text: "Red Small Size",
+            deleted_at: null,
+            created_at: "2025-04-28T14:20:11.208Z",
+            updated_at: "2025-04-28T14:20:11.208Z",
+          },
+        },
       ],
     },
     {
-      name: "Red-S",
-      price: 29.99,
-      inventory_stock: 5,
-      images: [
+      id: 2,
+      sku: "RED-M-002",
+      price: "13.9",
+      weight: "22",
+      inventory_quantity: 8,
+      is_active: true,
+      deleted_at: null,
+      created_at: "2025-04-28T14:20:42.890Z",
+      updated_at: "2025-04-28T14:20:42.890Z",
+      attribute_values: [
         {
-          src: "https://placehold.co/450x450?text=Red-S-Front",
-          alt: "Red-S-Front",
+          id: 3,
+          values: {
+            id: 1,
+            id_attributes: 1,
+            value: "Red",
+            attribute: {
+              name: "Color",
+            },
+          },
         },
         {
-          src: "https://placehold.co/450x450?text=Red-S-Back",
-          alt: "Red-S-Back",
+          id: 4,
+          values: {
+            id: 3,
+            id_attributes: 2,
+            value: "M",
+            attribute: {
+              name: "Size",
+            },
+          },
         },
       ],
-      attribute_value: [
-        { value: "Red", hexcode: "#E53E3E", attribute: { name: "Color" } },
-        { value: "S", attribute: { name: "Size" } },
+      product_images: [
+        {
+          image: {
+            id: 2,
+            url: "https://placehold.co/600x400?text=Red+M",
+            alt_text: "Red Medium Size",
+            deleted_at: null,
+            created_at: "2025-04-28T14:20:11.208Z",
+            updated_at: "2025-04-28T14:20:11.208Z",
+          },
+        },
       ],
     },
     {
-      name: "Blue-XS",
-      price: 32.99,
-      inventory_stock: 8,
-      images: [
+      id: 3,
+      sku: "RED-L-003",
+      price: "14.9",
+      weight: "24",
+      inventory_quantity: 0, // Out of stock
+      is_active: true,
+      deleted_at: null,
+      created_at: "2025-04-28T14:20:42.890Z",
+      updated_at: "2025-04-28T14:20:42.890Z",
+      attribute_values: [
         {
-          src: "https://placehold.co/450x450?text=Blue-XS-Front",
-          alt: "Blue-XS-Front",
+          id: 5,
+          values: {
+            id: 1,
+            id_attributes: 1,
+            value: "Red",
+            attribute: {
+              name: "Color",
+            },
+          },
         },
         {
-          src: "https://placehold.co/450x450?text=Blue-XS-Back",
-          alt: "Blue-XS-Back",
-        },
-        {
-          src: "https://placehold.co/450x450?text=Blue-XS-Detail",
-          alt: "Blue-XS-Detail",
+          id: 6,
+          values: {
+            id: 4,
+            id_attributes: 2,
+            value: "L",
+            attribute: {
+              name: "Size",
+            },
+          },
         },
       ],
-      attribute_value: [
-        { value: "Blue", hexcode: "#3182CE", attribute: { name: "Color" } },
-        { value: "XS", attribute: { name: "Size" } },
+      product_images: [
+        {
+          image: {
+            id: 3,
+            url: "https://placehold.co/600x400?text=Red+L",
+            alt_text: "Red Large Size",
+            deleted_at: null,
+            created_at: "2025-04-28T14:20:11.208Z",
+            updated_at: "2025-04-28T14:20:11.208Z",
+          },
+        },
       ],
     },
     {
-      name: "Black-XS",
-      price: 29.99,
-      inventory_stock: 3,
-      images: [
+      id: 4,
+      sku: "BLUE-S-004",
+      price: "12.9",
+      weight: "20",
+      inventory_quantity: 15,
+      is_active: true,
+      deleted_at: null,
+      created_at: "2025-04-28T14:20:42.890Z",
+      updated_at: "2025-04-28T14:20:42.890Z",
+      attribute_values: [
         {
-          src: "https://placehold.co/450x450?text=Black-XS-Front",
-          alt: "Black-XS-Front",
+          id: 7,
+          values: {
+            id: 5,
+            id_attributes: 1,
+            value: "Blue",
+            attribute: {
+              name: "Color",
+            },
+          },
         },
         {
-          src: "https://placehold.co/450x450?text=Black-XS-Back",
-          alt: "Black-XS-Back",
-        },
-        {
-          src: "https://placehold.co/450x450?text=Black-XS-Side",
-          alt: "Black-XS-Side",
-        },
-        {
-          src: "https://placehold.co/450x450?text=Black-XS-Detail",
-          alt: "Black-XS-Detail",
+          id: 8,
+          values: {
+            id: 2,
+            id_attributes: 2,
+            value: "S",
+            attribute: {
+              name: "Size",
+            },
+          },
         },
       ],
-      attribute_value: [
-        { value: "Black", hexcode: "#2D3748", attribute: { name: "Color" } },
-        { value: "XS", attribute: { name: "Size" } },
+      product_images: [
+        {
+          image: {
+            id: 4,
+            url: "https://placehold.co/600x400?text=Blue+S",
+            alt_text: "Blue Small Size",
+            deleted_at: null,
+            created_at: "2025-04-28T14:20:11.208Z",
+            updated_at: "2025-04-28T14:20:11.208Z",
+          },
+        },
+      ],
+    },
+    {
+      id: 5,
+      sku: "BLUE-M-005",
+      price: "13.9",
+      weight: "22",
+      inventory_quantity: 10,
+      is_active: true,
+      deleted_at: null,
+      created_at: "2025-04-28T14:20:42.890Z",
+      updated_at: "2025-04-28T14:20:42.890Z",
+      attribute_values: [
+        {
+          id: 9,
+          values: {
+            id: 5,
+            id_attributes: 1,
+            value: "Blue",
+            attribute: {
+              name: "Color",
+            },
+          },
+        },
+        {
+          id: 10,
+          values: {
+            id: 3,
+            id_attributes: 2,
+            value: "M",
+            attribute: {
+              name: "Size",
+            },
+          },
+        },
+      ],
+      product_images: [
+        {
+          image: {
+            id: 5,
+            url: "https://placehold.co/600x400?text=Blue+M",
+            alt_text: "Blue Medium Size",
+            deleted_at: null,
+            created_at: "2025-04-28T14:20:11.208Z",
+            updated_at: "2025-04-28T14:20:11.208Z",
+          },
+        },
+      ],
+    },
+    {
+      id: 6,
+      sku: "BLACK-S-006",
+      price: "11.9",
+      weight: "20",
+      inventory_quantity: 20,
+      is_active: true,
+      deleted_at: null,
+      created_at: "2025-04-28T14:20:42.890Z",
+      updated_at: "2025-04-28T14:20:42.890Z",
+      attribute_values: [
+        {
+          id: 11,
+          values: {
+            id: 6,
+            id_attributes: 1,
+            value: "Black",
+            attribute: {
+              name: "Color",
+            },
+          },
+        },
+        {
+          id: 12,
+          values: {
+            id: 2,
+            id_attributes: 2,
+            value: "S",
+            attribute: {
+              name: "Size",
+            },
+          },
+        },
+      ],
+      product_images: [
+        {
+          image: {
+            id: 6,
+            url: "https://placehold.co/600x400?text=Black+S",
+            alt_text: "Black Small Size",
+            deleted_at: null,
+            created_at: "2025-04-28T14:20:11.208Z",
+            updated_at: "2025-04-28T14:20:11.208Z",
+          },
+        },
+      ],
+    },
+    {
+      id: 7,
+      sku: "GREEN-M-007",
+      price: "13.9",
+      weight: "22",
+      inventory_quantity: 5,
+      is_active: true,
+      deleted_at: null,
+      created_at: "2025-04-28T14:20:42.890Z",
+      updated_at: "2025-04-28T14:20:42.890Z",
+      attribute_values: [
+        {
+          id: 13,
+          values: {
+            id: 7,
+            id_attributes: 1,
+            value: "Green",
+            attribute: {
+              name: "Color",
+            },
+          },
+        },
+        {
+          id: 14,
+          values: {
+            id: 3,
+            id_attributes: 2,
+            value: "M",
+            attribute: {
+              name: "Size",
+            },
+          },
+        },
+      ],
+      product_images: [
+        {
+          image: {
+            id: 7,
+            url: "https://placehold.co/600x400?text=Green+M",
+            alt_text: "Green Medium Size",
+            deleted_at: null,
+            created_at: "2025-04-28T14:20:11.208Z",
+            updated_at: "2025-04-28T14:20:11.208Z",
+          },
+        },
+      ],
+    },
+    {
+      id: 8,
+      sku: "GREEN-XL-008",
+      price: "15.9",
+      weight: "26",
+      inventory_quantity: 3,
+      is_active: true,
+      deleted_at: null,
+      created_at: "2025-04-28T14:20:42.890Z",
+      updated_at: "2025-04-28T14:20:42.890Z",
+      attribute_values: [
+        {
+          id: 15,
+          values: {
+            id: 7,
+            id_attributes: 1,
+            value: "Green",
+            attribute: {
+              name: "Color",
+            },
+          },
+        },
+        {
+          id: 16,
+          values: {
+            id: 5,
+            id_attributes: 2,
+            value: "XL",
+            attribute: {
+              name: "Size",
+            },
+          },
+        },
+      ],
+      product_images: [
+        {
+          image: {
+            id: 8,
+            url: "https://placehold.co/600x400?text=Green+XL",
+            alt_text: "Green Extra Large Size",
+            deleted_at: null,
+            created_at: "2025-04-28T14:20:11.208Z",
+            updated_at: "2025-04-28T14:20:11.208Z",
+          },
+        },
       ],
     },
   ],
