@@ -21,6 +21,8 @@ interface ProductDetailPageProps {
 const ProductDetailPage = async ({
   params: { categorySlug, productSlug },
 }: ProductDetailPageProps) => {
+  console.log(categorySlug, productSlug)
+  
   if (!product) {
     notFound();
   }
