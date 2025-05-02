@@ -1,5 +1,6 @@
-import QuantitySelector from "@/components/quantity-selector";
-import Breadcrumbs from "@/components/shared/Breadcrumbs";
+"use client";
+
+import Breadcrumbs from "@/components/shared/breadcrumbs";
 import Newsletter from "@/components/shared/Newsletter";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Button, buttonVariants } from "@/components/ui/button";
@@ -9,11 +10,13 @@ import { cn } from "@/lib/utils";
 import { Tag, Trash2 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
+import { QuantitySelector } from "../shop/[categorySlug]/[productSlug]/_components/quantity-selector";
 
 const breadcrumbs = [{ label: "Home", href: "/" }, { label: "Cart" }];
 
 const CartPage = () => {
+  const [quantity, setQuantity] = useState(0);
   return (
     <main>
       <div className="container">
@@ -68,7 +71,12 @@ const CartPage = () => {
                         {/* Price */}
                         <div className="flex flex-col items-end justify-between gap-4">
                           <Trash2 className="size-5 cursor-pointer text-red-500 duration-300 hover:opacity-80 lg:size-6" />
-                          <QuantitySelector />
+                          <QuantitySelector
+                            quantity={quantity}
+                            maxQuantity={100}
+                            onIncrement={() => setQuantity((prev) => prev + 1)}
+                            onDecrement={() => setQuantity((prev) => prev - 1)}
+                          />
                         </div>
                       </div>
 
@@ -96,7 +104,12 @@ const CartPage = () => {
                           <span className="text-xl font-bold lg:text-2xl">
                             $145
                           </span>
-                          <QuantitySelector />
+                          <QuantitySelector
+                            quantity={quantity}
+                            maxQuantity={100}
+                            onIncrement={() => setQuantity((prev) => prev + 1)}
+                            onDecrement={() => setQuantity((prev) => prev - 1)}
+                          />
                         </div>
                       </div>
                     </div>

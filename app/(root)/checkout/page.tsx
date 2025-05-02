@@ -1,6 +1,6 @@
 "use client";
 
-import Breadcrumbs from "@/components/shared/Breadcrumbs";
+import Breadcrumbs from "@/components/shared/breadcrumbs";
 import { buttonVariants } from "@/components/ui/button";
 
 import { cn } from "@/lib/utils";
